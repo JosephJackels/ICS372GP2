@@ -2,6 +2,11 @@ package edu.ics372.gp2.states;
 
 import edu.ics372.gp2.timer.Notifiable;
 
+/**
+ * Represents the playing state
+ * @author leo
+ *
+ */
 public class PlayingState extends VideoPlayerState implements Notifiable{
 	private static PlayingState instance;
 	
