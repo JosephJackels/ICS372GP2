@@ -62,8 +62,10 @@ public class GUIDisplay extends Application implements VideoPlayerDisplay {
 		buttonPane.add(fastForwardButton, 0, 8);
 		pane.add(buttonPane, 0, 1);
 		pane.add(videoPlayerStatus, 0, 0);
-		Scene scene = new Scene(pane);
+		pane.add(showSelectingStatus, 1, 0);
+		Scene scene = new Scene(pane,300,400);
 		arg0.setScene(scene);
+		
 		arg0.setTitle("video Player");
 		VideoPlayerContext.getInstance().setDisplay(this);
 		arg0.show();
@@ -83,7 +85,7 @@ public class GUIDisplay extends Application implements VideoPlayerDisplay {
 
 	@Override
 	public void showTurnOn() {
-		videoPlayerStatus.setText("idle: show unselected");
+		videoPlayerStatus.setText("On");
 
 	}
 
@@ -113,7 +115,19 @@ public class GUIDisplay extends Application implements VideoPlayerDisplay {
 
 	@Override
 	public void showSelected() {
-		videoPlayerStatus.setText("idle: show selected");
+		showSelectingStatus.setText("idle: show selected");
 	}
 
+	@Override
+	public void showUnselected() {
+		showSelectingStatus.setText("idle: show unselected");		
+	}
+
+	@Override
+	public void showSelectingOff() {
+		showSelectingStatus.setText("Off");
+		
+	}
+	
+	
 }

@@ -62,7 +62,7 @@ public class PlayingState extends VideoPlayerState implements Notifiable{
 	 * Process leaving playing state
 	 */
 	@Override
-	public void leave() {
+	public void leave(VideoPlayerState newState) {
 		//set clock to zero and null
 		//change video player context to not playing
 	}

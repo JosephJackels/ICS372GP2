@@ -10,7 +10,7 @@ public abstract class VideoPlayerState {
 	/**
 	 * leave current state
 	 */
-	public abstract void leave();
+	public abstract void leave(VideoPlayerState newState);
 	
 	/**
 	 * enter current state
@@ -73,5 +73,4 @@ public abstract class VideoPlayerState {
 		
 	}
 
-	
 }

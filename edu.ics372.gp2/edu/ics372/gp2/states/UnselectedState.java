@@ -16,11 +16,14 @@ private static UnselectedState instance;
 
 	@Override
 	public void enter() {
-		VideoPlayerContext.getInstance().showVideoPlayerOn();
+		VideoPlayerContext.getInstance().showUnselected();
 	}
 
 	@Override
-	public void leave() {
+	public void leave(VideoPlayerState newState) {
+		if(newState.equals(OffState.getInstance())) {
+			VideoPlayerContext.getInstance().showSelectOff();
+		}
 	}
 	
 	public void onOffRequest() {
