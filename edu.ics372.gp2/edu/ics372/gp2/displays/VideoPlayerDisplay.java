@@ -43,5 +43,14 @@ public interface VideoPlayerDisplay {
 	 * 
 	 */
 	public void showSelected();
-
+	
+	/**
+	 * 
+	 */
+	public void showUnselected();
+	
+	/**
+	 * 
+	 */
+	public void showSelectingOff();
 }
