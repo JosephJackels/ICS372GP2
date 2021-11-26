@@ -8,8 +8,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import edu.ics372.gp2.buttons.*;
-
-
+import edu.ics372.gp2.states.VideoPlayerContext;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -46,21 +45,27 @@ public class GUIDisplay extends Application implements VideoPlayerDisplay {
 		stopButton = new StopButton("Stop");
 		selectButton = new SelectButton("Select");
 		GridPane pane = new GridPane();
+		GridPane buttonPane = new GridPane();
+		
+		buttonPane.setHgap(5);
+		buttonPane.setVgap(5);
 		pane.setHgap(20);
 		pane.setVgap(20);
-		pane.setPadding(new Insets(20, 20, 20, 20));
-		pane.add(offButton, 0, 1);
-		pane.add(onButton, 1, 1);
-		pane.add(selectButton, 2, 1);
-		pane.add(playButton, 3, 1);
-		pane.add(stopButton, 4, 1);
-		pane.add(pauseButton, 5, 1);
-		pane.add(rewindButton, 6, 1);
-		pane.add(fastForwardButton, 7, 1);
-		pane.add(timerValue, 4, 0);
+		pane.setPadding(new Insets(30, 30, 30, 30));
+		buttonPane.add(offButton, 0, 1);
+		buttonPane.add(onButton, 0, 2);
+		buttonPane.add(selectButton, 0, 3);
+		buttonPane.add(playButton, 0, 4);
+		buttonPane.add(stopButton, 0, 5);
+		buttonPane.add(pauseButton, 0, 6);
+		buttonPane.add(rewindButton, 0, 7);
+		buttonPane.add(fastForwardButton, 0, 8);
+		pane.add(buttonPane, 0, 1);
+		pane.add(videoPlayerStatus, 0, 0);
 		Scene scene = new Scene(pane);
 		arg0.setScene(scene);
 		arg0.setTitle("video Player");
+		VideoPlayerContext.getInstance().setDisplay(this);
 		arg0.show();
 		arg0.addEventHandler(WindowEvent.WINDOW_CLOSE_REQUEST, new EventHandler<WindowEvent>() {
 			@Override
@@ -78,13 +83,13 @@ public class GUIDisplay extends Application implements VideoPlayerDisplay {
 
 	@Override
 	public void showTurnOn() {
-		// TODO Auto-generated method stub
+		videoPlayerStatus.setText("idle: show unselected");
 
 	}
 
 	@Override
 	public void showTurnOff() {
-		// TODO Auto-generated method stub
+		videoPlayerStatus.setText("Off");
 
 	}
 
@@ -104,6 +109,11 @@ public class GUIDisplay extends Application implements VideoPlayerDisplay {
 	public void showStopped() {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void showSelected() {
+		videoPlayerStatus.setText("idle: show selected");
 	}
 
 }

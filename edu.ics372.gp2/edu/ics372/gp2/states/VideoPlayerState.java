@@ -65,4 +65,13 @@ public abstract class VideoPlayerState {
 	public void onSelectRequest() {
 		
 	}
+	
+	/**
+	 * process On
+	 */
+	public void onOnRequest() {
+		
+	}
+
+	
 }
