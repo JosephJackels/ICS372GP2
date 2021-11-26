@@ -63,8 +63,9 @@ public class GUIDisplay extends Application implements VideoPlayerDisplay {
 		pane.add(buttonPane, 0, 1);
 		pane.add(videoPlayerStatus, 0, 0);
 		pane.add(showSelectingStatus, 1, 0);
-		Scene scene = new Scene(pane);
+		Scene scene = new Scene(pane,300,400);
 		arg0.setScene(scene);
+		
 		arg0.setTitle("video Player");
 		VideoPlayerContext.getInstance().setDisplay(this);
 		arg0.show();
