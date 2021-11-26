@@ -38,5 +38,10 @@ public interface VideoPlayerDisplay {
 	 * 
 	 */
 	public void showStopped();
+	
+	/**
+	 * 
+	 */
+	public void showSelected();
 
 }

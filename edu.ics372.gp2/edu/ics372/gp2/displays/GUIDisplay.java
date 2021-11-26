@@ -8,8 +8,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import edu.ics372.gp2.buttons.*;
-
-
+import edu.ics372.gp2.states.VideoPlayerContext;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -57,10 +56,11 @@ public class GUIDisplay extends Application implements VideoPlayerDisplay {
 		pane.add(pauseButton, 5, 1);
 		pane.add(rewindButton, 6, 1);
 		pane.add(fastForwardButton, 7, 1);
-		pane.add(timerValue, 4, 0);
+		pane.add(videoPlayerStatus, 4, 0);
 		Scene scene = new Scene(pane);
 		arg0.setScene(scene);
 		arg0.setTitle("video Player");
+		VideoPlayerContext.getInstance().setDisplay(this);
 		arg0.show();
 		arg0.addEventHandler(WindowEvent.WINDOW_CLOSE_REQUEST, new EventHandler<WindowEvent>() {
 			@Override
@@ -78,13 +78,13 @@ public class GUIDisplay extends Application implements VideoPlayerDisplay {
 
 	@Override
 	public void showTurnOn() {
-		// TODO Auto-generated method stub
+		videoPlayerStatus.setText("idle: show unselected");
 
 	}
 
 	@Override
 	public void showTurnOff() {
-		// TODO Auto-generated method stub
+		videoPlayerStatus.setText("Off");
 
 	}
 
@@ -104,6 +104,11 @@ public class GUIDisplay extends Application implements VideoPlayerDisplay {
 	public void showStopped() {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void showSelected() {
+		videoPlayerStatus.setText("idle: show selected");
 	}
 
 }
