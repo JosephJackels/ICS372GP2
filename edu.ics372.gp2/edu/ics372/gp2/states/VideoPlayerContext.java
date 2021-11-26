@@ -54,7 +54,7 @@ public class VideoPlayerContext {
 	 * @param newState
 	 */
 	public void changeState(VideoPlayerState newState) {
-		currentState.leave();
+		currentState.leave(newState);
 		currentState = newState;
 		currentState.enter();
 	}
@@ -74,6 +74,14 @@ public class VideoPlayerContext {
 		display.showSelected();
 	}
 	
+	public void showUnselected() {
+		display.showUnselected();
+	}
+	
+	public void showSelectOff() {
+		display.showSelectingOff();
+	}
+	
 	public void onOffRequest() {
 		currentState.onOffRequest();
 	}
@@ -84,5 +92,9 @@ public class VideoPlayerContext {
 	
 	public void onSelectRequest() {
 		currentState.onSelectRequest();
+	}
+	
+	public VideoPlayerState getCurrentState() {
+		return currentState;
 	}
 }

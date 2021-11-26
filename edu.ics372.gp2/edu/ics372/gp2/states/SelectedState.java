@@ -29,9 +29,10 @@ public class SelectedState extends VideoPlayerState{
 	}
 
 	@Override
-	public void leave() {
-		// TODO Auto-generated method stub
-		
+	public void leave(VideoPlayerState newState) {
+		if(newState.equals(OffState.getInstance())) {
+			VideoPlayerContext.getInstance().showSelectOff();
+		}
 	}
 	
 
