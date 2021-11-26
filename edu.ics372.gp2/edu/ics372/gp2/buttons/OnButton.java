@@ -12,7 +12,7 @@ public class OnButton extends GUIButton implements EventHandler<ActionEvent> {
 
 	@Override
 	public void handle(ActionEvent event) {
-		VideoPlayerContext.getInstance().onOnRequest()
+		VideoPlayerContext.getInstance().onOnRequest();
 	}
 
 }
