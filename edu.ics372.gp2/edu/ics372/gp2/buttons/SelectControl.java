@@ -1,0 +1,26 @@
+package edu.ics372.gp2.buttons;
+
+import edu.ics372.gp2.entities.Show;
+import edu.ics372.gp2.states.VideoPlayerContext;
+import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.scene.control.ListView;
+import edu.ics372.gp2.collections.*;
+
+public class SelectControl extends ListView {
+	public SelectControl() {
+		super(ShowList.getInstance().getShowsList()); // gets the ObservableList
+		setOnMouseClicked(new EventHandler<Event>() {
+			@Override
+			public void handle(Event arg0) {
+				/*Question: during the SelectedState(Idle; Show Selected in transition table), if we click on another show, will it change the selected show?
+				 * or nothing will happen?
+				 */
+				System.out.println("clicked on event " + getSelectionModel().getSelectedItem());
+				Show show = (Show) getSelectionModel().getSelectedItem();
+				VideoPlayerContext.getInstance().onSelectRequest(show);
+			}
+		});
+
+	}
+}
