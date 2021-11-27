@@ -6,6 +6,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 import edu.ics372.gp2.entities.Show;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  * ShowList is used to store a collection of show objects.
@@ -14,7 +16,7 @@ import edu.ics372.gp2.entities.Show;
  *
  */
 public class ShowList {
-	private List<Show> shows = new LinkedList<Show>();
+	private ObservableList<Show> shows = FXCollections.observableArrayList();
 	private final PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
 	private static ShowList showList;
 
@@ -48,20 +50,10 @@ public class ShowList {
 	}
 
 	/**
-	 * Searches for a show given a show's name.
-	 * 
-	 * @param showName
-	 * @return show or null if show not found
+	 * @return return an ObservableList that contains many shows.
 	 */
-	public Show getShow(String showName) {
-		Iterator<Show> iterator = shows.listIterator();
-		while (iterator.hasNext()) {
-			Show show = iterator.next();
-			if (showName.equals(show.getShowName())) {
-				return show;
-			}
-		}
-		return null;
+	public ObservableList<Show> getShowsList() {
+		return shows;
 	}
 
 	/**
@@ -70,16 +62,19 @@ public class ShowList {
 	 * @param showName
 	 * @return true iff show could be removed
 	 */
-	public boolean removeMember(String memberId) {
-		Show show = getShow(memberId);
-		if (show == null) {
-			return false;
-		} else {
-			return shows.remove(show);
+	public boolean removeShow(String showName) {
+		Iterator<Show> iterator = getShowsIterator();
+		while (iterator.hasNext()) {
+			Show show = iterator.next();
+			if (showName.equals(show.getShowName())) {
+				shows.remove(shows.indexOf(show));
+				return true;
+			}
 		}
+		return false;
 	}
 
-	public Iterator<Show> getMembers() {
+	public Iterator<Show> getShowsIterator() {
 		return shows.listIterator();
 	}
 
