@@ -16,7 +16,7 @@ public class OffState extends VideoPlayerState{
 	
 	/**
 	 * singleton object
-	 * @return
+	 * @return object
 	 */
 	public static OffState getInstance() {
 		if(instance == null) {
@@ -24,18 +24,29 @@ public class OffState extends VideoPlayerState{
 		}
 		return instance;
 	}
+	
+	/**
+	 * process on request.
+	 */
+	public void onOnRequest() {
+		VideoPlayerContext.getInstance().changeState(UnselectedState.getInstance());
+	}
 
+	/**
+	 * initialize the state.
+	 */
 	@Override
 	public void enter() {
 		VideoPlayerContext.getInstance().showVideoPlayerOff();
 	}
 
+	/**
+	 * Uninitialized the state.
+	 * @param newState
+	 */
 	@Override
 	public void leave(VideoPlayerState newState) {
 		VideoPlayerContext.getInstance().showVideoPlayerOn();
 	}
-	
-	public void onOnRequest() {
-		VideoPlayerContext.getInstance().changeState(UnselectedState.getInstance());
-	}
+
 }
