@@ -5,6 +5,7 @@ package edu.ics372.gp2.displays;
 
 import javafx.application.Application;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 
 import edu.ics372.gp2.buttons.*;
@@ -12,8 +13,12 @@ import edu.ics372.gp2.states.VideoPlayerContext;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.WindowEvent;
 /**
  * @author Dilli
@@ -28,42 +33,40 @@ public class GUIDisplay extends Application implements VideoPlayerDisplay {
 	private GUIButton rewindButton;
 	private GUIButton fastForwardButton;
 	private GUIButton stopButton;
-	private GUIButton selectButton;
 	private Text videoPlayerStatus = new Text("Off");
 	private Text timerValue = new Text("            ");
 	private Text showSelectingStatus = new Text("Off");
 	private Text playingStatus = new Text("Off");
+	private Text showText = new Text("Shows");
+
 	
 	@Override
 	public void start(Stage arg0) throws Exception {
-		offButton = new OffButton("Off");
-		onButton = new OnButton("On");
-		pauseButton = new PauseButton("Pause");
-		playButton = new PlayButton("Play");
-		rewindButton = new RewindButton("Rewind");
-		fastForwardButton = new FastFowardButton("Fast Forward");
-		stopButton = new StopButton("Stop");
-		selectButton = new SelectButton("Select");
-		GridPane pane = new GridPane();
-		GridPane buttonPane = new GridPane();
+		offButton = new OffButton("OFF");
+		onButton = new OnButton("ON");
+		pauseButton = new PauseButton("PAUSE");
+		playButton = new PlayButton("PLAY");
+		rewindButton = new RewindButton("REW");
+		fastForwardButton = new FastFowardButton("FF");
+		stopButton = new StopButton("STOP");
+
 		
-		buttonPane.setHgap(5);
-		buttonPane.setVgap(5);
-		pane.setHgap(20);
-		pane.setVgap(20);
-		pane.setPadding(new Insets(30, 30, 30, 30));
-		buttonPane.add(offButton, 0, 1);
-		buttonPane.add(onButton, 0, 2);
-		buttonPane.add(selectButton, 0, 3);
-		buttonPane.add(playButton, 0, 4);
-		buttonPane.add(stopButton, 0, 5);
-		buttonPane.add(pauseButton, 0, 6);
-		buttonPane.add(rewindButton, 0, 7);
-		buttonPane.add(fastForwardButton, 0, 8);
-		pane.add(buttonPane, 0, 1);
-		pane.add(videoPlayerStatus, 0, 0);
-		pane.add(showSelectingStatus, 1, 0);
-		Scene scene = new Scene(pane,300,400);
+		HBox stage = new HBox();
+		VBox buttonControls = new VBox();
+		VBox displayContainer = new VBox();
+		TextFlow statusDisplay = new TextFlow();
+		statusDisplay.setPadding(new Insets(5, 10, 10, 10));
+		statusDisplay.setStyle("-fx-background-color: white;" + "-fx-border-color: black");
+		statusDisplay.setMinWidth(500);
+		statusDisplay.setMinHeight(140);
+		
+		statusDisplay.getChildren().add(videoPlayerStatus);
+		buttonControls.getChildren().addAll(onButton, offButton, playButton, 
+				stopButton, pauseButton, fastForwardButton, rewindButton);
+		displayContainer.getChildren().addAll(statusDisplay, showText);
+		stage.getChildren().addAll(buttonControls, displayContainer);
+		
+		Scene scene = new Scene(stage, 553, 600);
 		arg0.setScene(scene);
 		
 		arg0.setTitle("video Player");
