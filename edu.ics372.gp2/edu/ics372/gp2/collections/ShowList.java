@@ -1,9 +1,6 @@
 package edu.ics372.gp2.collections;
 
-import java.beans.PropertyChangeSupport;
 import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
 
 import edu.ics372.gp2.entities.Show;
 import javafx.collections.FXCollections;
@@ -17,14 +14,13 @@ import javafx.collections.ObservableList;
  */
 public class ShowList {
 	private ObservableList<Show> shows = FXCollections.observableArrayList();
-	private final PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
 	private static ShowList showList;
 
 	/**
 	 * Creates the showList
 	 */
 	private ShowList() {
-
+		defaultShows();
 	}
 
 	/**
@@ -40,7 +36,7 @@ public class ShowList {
 	}
 
 	/**
-	 * adding show to the list
+	 * Adding a show to the list
 	 * 
 	 * @param show
 	 * @return true iff show can be added
@@ -76,6 +72,14 @@ public class ShowList {
 
 	public Iterator<Show> getShowsIterator() {
 		return shows.listIterator();
+	}
+	
+	private void defaultShows() {
+		for (int i = 1; i < 6; i++) {
+			String showName = "N" + i;
+			int showLength = 10 * i;
+			insertShow(new Show(showName, showLength));
+		}
 	}
 
 }

@@ -71,7 +71,7 @@ public class VideoPlayerContext {
 	}
 	
 	public void showSelected(Show show) {
-		display.showSelected(show.getShowName());
+		display.showSelected(show.getShowName(), Integer.toString(show.getShowLength()));
 	}
 	
 	public void showUnselected() {

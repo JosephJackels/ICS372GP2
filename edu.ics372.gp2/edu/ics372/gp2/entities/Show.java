@@ -29,7 +29,7 @@ public class Show {
 	
 	@Override
 	public String toString() {
-		return showName;
+		return showName + " " + showLength + " seconds";
 	}
 
 }

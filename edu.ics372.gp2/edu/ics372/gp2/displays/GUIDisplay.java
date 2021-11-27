@@ -18,6 +18,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.WindowEvent;
+
+import edu.ics372.gp2.entities.Show;
 /**
  * @author Dilli
  *
@@ -33,7 +35,7 @@ public class GUIDisplay extends Application implements VideoPlayerDisplay {
 	private GUIButton stopButton;
 	private Text videoPlayerStatus = new Text("Off\n");
 	private Text timerValue = new Text("            ");
-	private Text showSelectingStatus = new Text("Off");
+//	private Text showSelectingStatus = new Text("Off");
 	private Text playingStatus = new Text("Off");
 	private Text showText = new Text("Shows");
 
@@ -48,9 +50,9 @@ public class GUIDisplay extends Application implements VideoPlayerDisplay {
 		fastForwardButton = new FastFowardButton("FF");
 		stopButton = new StopButton("STOP");
 		
-		//insert 2 shows as test subject
-		ShowList.getInstance().insertShow(new Show("World War Z Trailer", 30));
-		ShowList.getInstance().insertShow(new Show("The Grudge Trailer", 30));
+//		//insert 2 shows as test subject
+//		ShowList.getInstance().insertShow(new Show("World War Z Trailer", 30));
+//		ShowList.getInstance().insertShow(new Show("The Grudge Trailer", 30));
 		//create a listView
 		ListView<Show> shows = new SelectControl();
 		
@@ -64,7 +66,7 @@ public class GUIDisplay extends Application implements VideoPlayerDisplay {
 		statusDisplay.setMinHeight(140);
 		
 		statusDisplay.getChildren().add(videoPlayerStatus);
-		statusDisplay.getChildren().add(showSelectingStatus);
+//		statusDisplay.getChildren().add(showSelectingStatus);
 		buttonControls.getChildren().addAll(onButton, offButton, playButton, 
 				stopButton, pauseButton, fastForwardButton, rewindButton);
 		displayContainer.getChildren().addAll(statusDisplay, showText, shows);
@@ -121,18 +123,19 @@ public class GUIDisplay extends Application implements VideoPlayerDisplay {
 	}
 
 	@Override
-	public void showSelected(String showName) {
-		showSelectingStatus.setText("idle: show selected " + showName);
+	public void showSelected(String showName, String showLength) {
+		videoPlayerStatus.setText("Show selected: " + showName + "\nShow length: " +
+				showLength + " seconds");
 	}
 
 	@Override
 	public void showUnselected() {
-		showSelectingStatus.setText("idle: show unselected");		
+		videoPlayerStatus.setText("Show unselected");		
 	}
 
 	@Override
 	public void showSelectingOff() {
-		showSelectingStatus.setText("Off");
+		videoPlayerStatus.setText("Off");
 		
 	}
 	
