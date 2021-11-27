@@ -1,6 +1,7 @@
 package edu.ics372.gp2.states;
 
 import edu.ics372.gp2.displays.VideoPlayerDisplay;
+import edu.ics372.gp2.entities.Show;
 
 /**
  * This class observers the context of the Video Player.
@@ -11,7 +12,7 @@ public class VideoPlayerContext {
 	private VideoPlayerDisplay display;
 	private VideoPlayerState currentState;
 	private static VideoPlayerContext instance;
-	
+	private Show show;
 	/**
 	 * Private constructor for singleton
 	 */
@@ -69,9 +70,8 @@ public class VideoPlayerContext {
 		display.showTurnOn();
 	}
 	
-
-	public void showSelected() {
-		display.showSelected();
+	public void showSelected(Show show) {
+		display.showSelected(show.getShowName());
 	}
 	
 	public void showUnselected() {
@@ -90,11 +90,19 @@ public class VideoPlayerContext {
 		currentState.onOnRequest();
 	}
 	
-	public void onSelectRequest() {
-		currentState.onSelectRequest();
+	public void onSelectRequest(Show show) {
+		currentState.onSelectRequest(show);
 	}
 	
 	public VideoPlayerState getCurrentState() {
 		return currentState;
+	}
+	
+	public void setShow(Show show) {
+		this.show = show;
+	}
+	
+	public Show getShow() {
+		return this.show;
 	}
 }
