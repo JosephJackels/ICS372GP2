@@ -7,12 +7,14 @@ import javafx.application.Application;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
-
 import edu.ics372.gp2.buttons.*;
+import edu.ics372.gp2.collections.ShowList;
+import edu.ics372.gp2.entities.Show;
 import edu.ics372.gp2.states.VideoPlayerContext;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.WindowEvent;
@@ -29,7 +31,7 @@ public class GUIDisplay extends Application implements VideoPlayerDisplay {
 	private GUIButton rewindButton;
 	private GUIButton fastForwardButton;
 	private GUIButton stopButton;
-	private Text videoPlayerStatus = new Text("Off");
+	private Text videoPlayerStatus = new Text("Off\n");
 	private Text timerValue = new Text("            ");
 	private Text showSelectingStatus = new Text("Off");
 	private Text playingStatus = new Text("Off");
@@ -45,7 +47,12 @@ public class GUIDisplay extends Application implements VideoPlayerDisplay {
 		rewindButton = new RewindButton("REW");
 		fastForwardButton = new FastFowardButton("FF");
 		stopButton = new StopButton("STOP");
-
+		
+		//insert 2 shows as test subject
+		ShowList.getInstance().insertShow(new Show("World War Z Trailer", 30));
+		ShowList.getInstance().insertShow(new Show("The Grudge Trailer", 30));
+		//create a listView
+		ListView<Show> shows = new SelectControl();
 		
 		HBox stage = new HBox();
 		VBox buttonControls = new VBox();
@@ -57,9 +64,10 @@ public class GUIDisplay extends Application implements VideoPlayerDisplay {
 		statusDisplay.setMinHeight(140);
 		
 		statusDisplay.getChildren().add(videoPlayerStatus);
+		statusDisplay.getChildren().add(showSelectingStatus);
 		buttonControls.getChildren().addAll(onButton, offButton, playButton, 
 				stopButton, pauseButton, fastForwardButton, rewindButton);
-		displayContainer.getChildren().addAll(statusDisplay, showText);
+		displayContainer.getChildren().addAll(statusDisplay, showText, shows);
 		stage.getChildren().addAll(buttonControls, displayContainer);
 		
 		Scene scene = new Scene(stage, 553, 600);
@@ -84,13 +92,13 @@ public class GUIDisplay extends Application implements VideoPlayerDisplay {
 
 	@Override
 	public void showTurnOn() {
-		videoPlayerStatus.setText("On");
+		videoPlayerStatus.setText("On\n");
 
 	}
 
 	@Override
 	public void showTurnOff() {
-		videoPlayerStatus.setText("Off");
+		videoPlayerStatus.setText("Off\n");
 
 	}
 
@@ -113,8 +121,8 @@ public class GUIDisplay extends Application implements VideoPlayerDisplay {
 	}
 
 	@Override
-	public void showSelected() {
-		showSelectingStatus.setText("idle: show selected");
+	public void showSelected(String showName) {
+		showSelectingStatus.setText("idle: show selected " + showName);
 	}
 
 	@Override
