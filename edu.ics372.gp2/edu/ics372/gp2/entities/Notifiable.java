@@ -1,4 +1,4 @@
-package edu.ics372.gp2.timer;
+package edu.ics372.gp2.entities;
 
 public interface Notifiable {
 	
