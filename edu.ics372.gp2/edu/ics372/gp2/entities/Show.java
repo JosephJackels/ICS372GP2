@@ -12,10 +12,23 @@ public class Show {
 
 	public Show(String showName, int showLength) {
 		this.showName = showName;
-		this.showLength = showLength;
+		this.setShowLength(showLength);
 	}
 
 	public String getShowName() {
+		return showName;
+	}
+
+	public int getShowLength() {
+		return showLength;
+	}
+
+	public void setShowLength(int showLength) {
+		this.showLength = showLength;
+	}
+	
+	@Override
+	public String toString() {
 		return showName;
 	}
 
