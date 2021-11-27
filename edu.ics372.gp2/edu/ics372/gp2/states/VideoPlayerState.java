@@ -1,5 +1,7 @@
 package edu.ics372.gp2.states;
 
+import edu.ics372.gp2.entities.Show;
+
 /**
  * Super class for all states
  * @author leo
@@ -62,7 +64,7 @@ public abstract class VideoPlayerState {
 	/**
 	 * Process selection
 	 */
-	public void onSelectRequest() {
+	public void onSelectRequest(Show show) {
 		
 	}
 	
@@ -72,5 +74,4 @@ public abstract class VideoPlayerState {
 	public void onOnRequest() {
 		
 	}
-
 }
