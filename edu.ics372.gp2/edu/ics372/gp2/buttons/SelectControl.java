@@ -16,7 +16,6 @@ public class SelectControl extends ListView {
 				/*Question: during the SelectedState(Idle; Show Selected in transition table), if we click on another show, will it change the selected show?
 				 * or nothing will happen?
 				 */
-				System.out.println("clicked on event " + getSelectionModel().getSelectedItem());
 				Show show = (Show) getSelectionModel().getSelectedItem();
 				VideoPlayerContext.getInstance().onSelectRequest(show);
 			}
