@@ -30,7 +30,7 @@ public class SelectedState extends VideoPlayerState{
 	 * process select show request
 	 * @param show
 	 */
-	public void onSelectRequest(Show show) {
+	public void selectRequest(Show show) {
 		this.show = show;
 		VideoPlayerContext.getInstance().showSelected(show);
 	}
@@ -38,7 +38,7 @@ public class SelectedState extends VideoPlayerState{
 	/**
 	 * process off request
 	 */
-	public void onOffRequest() {
+	public void offRequest() {
 		VideoPlayerContext.getInstance().changeState(OffState.getInstance());
 	}
 

@@ -34,7 +34,7 @@ public class PlayingState extends VideoPlayerState implements Notifiable{
 	 * Process play request
 	 */
 	@Override
-	public void onPlayRequest() {
+	public void playRequest() {
 		//update timer
 		//display time
 	}
@@ -74,6 +74,12 @@ public class PlayingState extends VideoPlayerState implements Notifiable{
 	public void enter() {
 		//create new timer
 		//show time of video
+	}
+
+	@Override
+	public void onTimerRunsOut() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

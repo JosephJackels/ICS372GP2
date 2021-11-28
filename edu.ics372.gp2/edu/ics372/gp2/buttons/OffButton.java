@@ -12,7 +12,7 @@ public class OffButton extends GUIButton implements EventHandler<ActionEvent> {
 
 	@Override
 	public void handle(ActionEvent event) {
-		VideoPlayerContext.getInstance().onOffRequest();
+		VideoPlayerContext.getInstance().offRequest();
 	}
 
 }
