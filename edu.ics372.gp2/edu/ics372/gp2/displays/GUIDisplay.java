@@ -98,12 +98,6 @@ public class GUIDisplay extends Application implements VideoPlayerDisplay {
 	}
 
 	@Override
-	public void showTurnOn() {
-		videoPlayerStatus.setText("On");
-
-	}
-
-	@Override
 	public void showTurnOff() {
 		videoPlayerStatus.setText("Off\n");
 

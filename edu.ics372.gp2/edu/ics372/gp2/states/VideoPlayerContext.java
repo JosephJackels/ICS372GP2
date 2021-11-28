@@ -69,10 +69,6 @@ public class VideoPlayerContext {
 		display.showTurnOff();
 	}
 
-	public void showVideoPlayerOn() {
-		display.showTurnOn();
-	}
-
 	public void showSelected(Show show) {
 		display.showSelected(show.getShowName(), Integer.toString(show.getShowLength()));
 	}

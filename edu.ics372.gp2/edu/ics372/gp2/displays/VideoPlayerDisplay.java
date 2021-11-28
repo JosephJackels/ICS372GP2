@@ -14,11 +14,6 @@ public interface VideoPlayerDisplay {
 	/**
 	 * 
 	 */
-	public void showTurnOn();
-
-	/**
-	 * 
-	 */
 	public void showTurnOff();
 
 	/**
