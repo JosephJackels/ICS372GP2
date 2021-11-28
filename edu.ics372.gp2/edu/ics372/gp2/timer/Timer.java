@@ -1,4 +1,4 @@
-package edu.ics372.gp2.entities;
+package edu.ics372.gp2.timer;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -7,9 +7,6 @@ import java.beans.PropertyChangeListener;
  * The timer allows a certain time period to be set when created. It sends
  * signals back to its creator every second and a timer runs out message when
  * the time period has elapsed.
- *
- * @author Austin Wang
- *
  */
 public class Timer implements PropertyChangeListener {
 	private int timeValue;
