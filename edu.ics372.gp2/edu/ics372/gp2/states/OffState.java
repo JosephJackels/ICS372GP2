@@ -46,7 +46,6 @@ public class OffState extends VideoPlayerState{
 	 */
 	@Override
 	public void leave(VideoPlayerState newState) {
-		VideoPlayerContext.getInstance().showVideoPlayerOn();
 	}
 
 }
