@@ -1,8 +1,7 @@
 package edu.ics372.gp2.states;
 
-import edu.ics372.gp2.entities.Notifiable;
+import edu.ics372.gp2.timer.*;
 import edu.ics372.gp2.entities.Show;
-import edu.ics372.gp2.entities.Timer;
 
 public class UnselectedState extends VideoPlayerState implements Notifiable {
 	private static UnselectedState instance;

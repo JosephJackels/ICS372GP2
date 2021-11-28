@@ -3,6 +3,11 @@ package edu.ics372.gp2.timer;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
+/**
+ * The timer allows a certain time period to be set when created. It sends
+ * signals back to its creator every second and a timer runs out message when
+ * the time period has elapsed.
+ */
 public class Timer implements PropertyChangeListener {
 	private int timeValue;
 	private Notifiable client;
@@ -21,19 +26,12 @@ public class Timer implements PropertyChangeListener {
 	}
 
 	/**
-	 * The timer value could be changed using this method.
-	 *
-	 * @param value the increment (could be negative) for the time value.
+	 * Sets the timeValue to a new value
+	 * 
+	 * @param timeValue
 	 */
-	public void addTimeValue(int value) {
-		timeValue += value;
-	}
-
-	/**
-	 * Stops the timer by deleting itself from the list of observers
-	 */
-	public void stop() {
-		Clock.getInstance().removePropertyChangeListener(this);
+	public void setTimeValue(int timeValue) {
+		this.timeValue = timeValue;
 	}
 
 	/**
@@ -45,13 +43,21 @@ public class Timer implements PropertyChangeListener {
 		return timeValue;
 	}
 
+	/**
+	 * Stops the timer by deleting itself from the list of observers
+	 */
+	public void stop() {
+		Clock.getInstance().removePropertyChangeListener(this);
+	}
+
 	@Override
-	public void propertyChange(PropertyChangeEvent arg0) {
+	public void propertyChange(PropertyChangeEvent evt) {
 		if (--timeValue <= 0) {
 			client.onTimerRunsOut();
 			Clock.getInstance().removePropertyChangeListener(this);
 		} else {
 			client.OnTimerTick(timeValue);
 		}
+
 	}
 }

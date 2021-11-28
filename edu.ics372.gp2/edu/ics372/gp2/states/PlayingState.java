@@ -1,6 +1,6 @@
 package edu.ics372.gp2.states;
 
-import edu.ics372.gp2.entities.Notifiable;
+import edu.ics372.gp2.timer.Notifiable;
 
 /**
  * Represents the playing state
