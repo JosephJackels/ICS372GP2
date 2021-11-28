@@ -22,56 +22,56 @@ public abstract class VideoPlayerState {
 	/**
 	 * Process play request
 	 */
-	public void onPlayRequest() {
+	public void playRequest() {
 		
 	}
 	
 	/**
 	 * Process pause
 	 */
-	public void onPauseRequest() {
+	public void pauseRequest() {
 		
 	}
 	
 	/**
 	 * Process stop
 	 */
-	public void onStopRequest() {
+	public void stopRequest() {
 		
 	}
 	
 	/**
 	 * Process rewind
 	 */
-	public void onRewindRequest() {
+	public void rewindRequest() {
 		
 	}
 	
 	/**
 	 * Process fast forward
 	 */
-	public void onFastFowardRequest() {
+	public void fastFowardRequest() {
 		
 	}
 	
 	/**
 	 * Process off
 	 */
-	public void onOffRequest() {
+	public void offRequest() {
 		
 	}
 	
 	/**
 	 * Process selection
 	 */
-	public void onSelectRequest(Show show) {
+	public void selectRequest(Show show) {
 		
 	}
 	
 	/**
 	 * process On
 	 */
-	public void onOnRequest() {
+	public void onRequest() {
 		
 	}
 }

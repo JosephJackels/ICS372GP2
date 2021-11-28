@@ -35,19 +35,25 @@ public interface VideoPlayerDisplay {
 	 * 
 	 */
 	public void showStopped();
-	
+
 	/**
-	 * I gave this method a parameter just to check if selecting a show works. if not needed we can delete the parameter.
+	 * I gave this method a parameter just to check if selecting a show works. if
+	 * not needed we can delete the parameter.
 	 */
 	public void showSelected(String showName, String showLength);
-	
+
 	/**
 	 * 
 	 */
 	public void showUnselected();
-	
+
 	/**
 	 * 
 	 */
 	public void showSelectingOff();
+
+	/**
+	 * Indicate that the screen saver is on
+	 */
+	public void showScreenSaver();
 }

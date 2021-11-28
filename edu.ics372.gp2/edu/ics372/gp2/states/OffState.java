@@ -28,7 +28,7 @@ public class OffState extends VideoPlayerState{
 	/**
 	 * process on request.
 	 */
-	public void onOnRequest() {
+	public void onRequest() {
 		VideoPlayerContext.getInstance().changeState(UnselectedState.getInstance());
 	}
 
