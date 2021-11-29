@@ -60,7 +60,7 @@ public class VideoPlayerContext {
 	 * @param newState
 	 */
 	public void changeState(VideoPlayerState newState) {
-		currentState.leave(newState);
+		currentState.leave();
 		currentState = newState;
 		currentState.enter();
 	}
@@ -86,6 +86,10 @@ public class VideoPlayerContext {
 
 	}
 
+	public void showTimeLeft(int time) {
+		display.showTimeRemaining(time);
+	}
+
 	public void offRequest() {
 		currentState.offRequest();
 	}
@@ -96,6 +100,18 @@ public class VideoPlayerContext {
 
 	public void selectRequest(Show show) {
 		currentState.selectRequest(show);
+	}
+
+	public void playShowRequest() {
+		currentState.playRequest();
+	}
+
+	public void reqindRequest() {
+
+	}
+
+	public void fastForwardRequest() {
+
 	}
 
 	public VideoPlayerState getCurrentState() {
