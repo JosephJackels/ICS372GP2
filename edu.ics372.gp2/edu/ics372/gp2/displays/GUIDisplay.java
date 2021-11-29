@@ -40,9 +40,9 @@ public class GUIDisplay extends Application implements VideoPlayerDisplay {
 	private GUIButton fastForwardButton;
 	private GUIButton stopButton;
 	private Text videoPlayerStatus = new Text("Off\n");
-	private Text timerValue = new Text("            ");
+	private Text timerValue = new Text(" ");
 //	private Text showSelectingStatus = new Text("Off");
-	private Text playingStatus = new Text("Off");
+	private Text playingStatus = new Text("Not Started");
 	private Text showText = new Text("Shows");
 
 	@Override
@@ -71,6 +71,7 @@ public class GUIDisplay extends Application implements VideoPlayerDisplay {
 		statusDisplay.setMinHeight(140);
 
 		statusDisplay.getChildren().add(videoPlayerStatus);
+		statusDisplay.getChildren().add(timerValue);
 //		statusDisplay.getChildren().add(showSelectingStatus);
 		buttonControls.getChildren().addAll(onButton, offButton, playButton, stopButton, pauseButton, fastForwardButton,
 				rewindButton);
@@ -94,13 +95,12 @@ public class GUIDisplay extends Application implements VideoPlayerDisplay {
 	@Override
 	public void showTimeRemaining(int time) {
 		// TODO Auto-generated method stub
-
+		timerValue.setText("Time Remaining: " + time + "\n");
 	}
 
 	@Override
 	public void showTurnOff() {
 		videoPlayerStatus.setText("Off\n");
-
 	}
 
 	@Override
@@ -123,7 +123,8 @@ public class GUIDisplay extends Application implements VideoPlayerDisplay {
 
 	@Override
 	public void showSelected(String showName, String showLength) {
-		videoPlayerStatus.setText("Show selected: " + showName + "\nShow length: " + showLength + " seconds");
+		videoPlayerStatus.setText("Show selected: " + showName + "\nShow length: " + showLength + " seconds\n");
+		playingStatus.setText("Not Started");
 	}
 
 	@Override
