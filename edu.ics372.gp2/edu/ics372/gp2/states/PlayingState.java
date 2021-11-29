@@ -67,11 +67,28 @@ public class PlayingState extends VideoPlayerState implements Notifiable {
 		// show 0 time left
 		// change to idle state
 	}
-
+	
+	
+	/**
+	 * process stop
+	 */
+	@Override
+	public void stopRequest() {
+		VideoPlayerContext.getInstance().changeState(ShowEndedState.getInstance());
+		VideoPlayerContext.getInstance().showStopped();
+	}
+	
+	/**
+	 * process off
+	 */
+	@Override
 	public void offRequest() {
 		VideoPlayerContext.getInstance().changeState(OffState.getInstance());
 	}
 
+	/**
+	 * process pause
+	 */
 	public void pauseRequest() {
 		// save elapsed time somehow?
 		show.setElapsedTime(show.getShowLength() - timer.getTimeValue());
