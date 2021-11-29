@@ -1,10 +1,13 @@
 package edu.ics372.gp2.states;
 
 import edu.ics372.gp2.entities.Show;
+import edu.ics372.gp2.timer.Notifiable;
+import edu.ics372.gp2.timer.Timer;
 
-public class SelectedState extends VideoPlayerState {
+public class SelectedState extends VideoPlayerState implements Notifiable {
 	private static SelectedState instance;
 	private Show show = null;
+	private Timer timer;
 
 	/**
 	 * Private constructor for singleton pattern.
@@ -34,6 +37,7 @@ public class SelectedState extends VideoPlayerState {
 	 */
 	public void selectRequest(Show show) {
 		this.show = show;
+		VideoPlayerContext.getInstance().setShow(show);
 		VideoPlayerContext.getInstance().showSelected(show);
 	}
 
@@ -47,12 +51,22 @@ public class SelectedState extends VideoPlayerState {
 	public void offRequest() {
 		VideoPlayerContext.getInstance().changeState(OffState.getInstance());
 	}
+	
+	/**
+	 * process timeout after no buttons pressed
+	 */
+	@Override
+	public void onTimerRunsOut() {
+		ScreenSaverState.getInstance().setPreviousState(this);
+		VideoPlayerContext.getInstance().changeState(ScreenSaverState.getInstance());
+	}
 
 	/**
 	 * initialized the State
 	 */
 	@Override
 	public void enter() {
+		timer = new Timer(this, 10);
 		this.show = VideoPlayerContext.getInstance().getShow();
 		VideoPlayerContext.getInstance().showSelected(show);
 	}
@@ -64,10 +78,22 @@ public class SelectedState extends VideoPlayerState {
 	 */
 	@Override
 	public void leave() {
+		timer.stop();
+		timer = null;
 		/*
 		 * if (newState.equals(OffState.getInstance())) {
 		 * VideoPlayerContext.getInstance().showSelectOff(); }
 		 */
+	}
+
+	@Override
+	public void OnTimerTick(int timerValue) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void onVideoRunsOut() {
+		// TODO Auto-generated method stub
 	}
 
 }

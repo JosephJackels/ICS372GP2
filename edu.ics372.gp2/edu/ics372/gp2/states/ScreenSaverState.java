@@ -1,5 +1,7 @@
 package edu.ics372.gp2.states;
 
+import edu.ics372.gp2.entities.Show;
+
 /**
  * Represents Screen saver state
  * 
@@ -8,6 +10,7 @@ package edu.ics372.gp2.states;
  */
 public class ScreenSaverState extends VideoPlayerState {
 	private static ScreenSaverState instance;
+	private VideoPlayerState previousState;
 
 	/**
 	 * private constructor for singleton
@@ -28,17 +31,85 @@ public class ScreenSaverState extends VideoPlayerState {
 		}
 		return instance;
 	}
-
+	
+	public void setPreviousState(VideoPlayerState previousState) {
+		this.previousState = previousState;
+	}
+	
+	/**
+	 * process On request
+	 */
+	@Override
+	public void onRequest() {
+		VideoPlayerContext.getInstance().changeState(previousState);
+	}
+	
+	/**
+	 * process Off request
+	 */
+	@Override
+	public void offRequest() {
+		VideoPlayerContext.getInstance().changeState(OffState.getInstance());
+	}
+	
+	/**
+	 * Process selection request
+	 */
+	public void selectRequest(Show show) {
+		VideoPlayerContext.getInstance().changeState(previousState);
+	}
+	
+	/**
+	 * process Play request
+	 */
+	@Override
+	public void playRequest() {
+		if (previousState.equals(UnselectedState.getInstance())) {
+			VideoPlayerContext.getInstance().changeState(previousState);
+		} else {
+			VideoPlayerContext.getInstance().changeState(PlayingState.getInstance());
+		}
+	}
+	
+	/**
+	 * Process pause request
+	 */
+	public void pauseRequest() {
+		VideoPlayerContext.getInstance().changeState(previousState);
+	}
+	
+	/**
+	 * Process stop request
+	 */
+	public void stopRequest() {
+		VideoPlayerContext.getInstance().changeState(previousState);
+	}
+	
+	/**
+	 * Process rewind request
+	 */
+	public void rewindRequest() {
+		VideoPlayerContext.getInstance().changeState(previousState);
+	}
+	
+	/**
+	 * Process fast forward request
+	 */
+	public void fastFowardRequest() {
+		VideoPlayerContext.getInstance().changeState(previousState);
+	}
+	
 	@Override
 	public void leave() {
-		// TODO Auto-generated method stub
-
 	}
 
+	/**
+	 * initialize the state
+	 * 
+	 */
 	@Override
 	public void enter() {
-		// TODO Auto-generated method stub
-
+		VideoPlayerContext.getInstance().showScreenSaver();
 	}
 
 }

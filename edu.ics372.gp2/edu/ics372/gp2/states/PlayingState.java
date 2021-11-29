@@ -106,7 +106,7 @@ public class PlayingState extends VideoPlayerState implements Notifiable {
 		// can be stored and retrieved whenever leaving the state?
 		show = VideoPlayerContext.getInstance().getShow();
 		timer = new Timer(this, show.getShowLength() - show.getElapsedTime());
-
+		VideoPlayerContext.getInstance().showSelected(show);
 	}
 
 	@Override
