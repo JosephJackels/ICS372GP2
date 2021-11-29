@@ -130,13 +130,6 @@ public class UnselectedState extends VideoPlayerState implements Notifiable {
 	 */
 	@Override
 	public void leave() {
-		/*
-		 * if (newState.equals(OffState.getInstance())) { timer.stop(); timer = null;
-		 * VideoPlayerContext.getInstance().showSelectOff(); }
-		 * 
-		 * if (newState.equals(ScreenSaverState.getInstance())) { timer.stop(); timer =
-		 * null; VideoPlayerContext.getInstance().showScreenSaver(); }
-		 */
 		timer.stop();
 		timer = null;
 	}

@@ -28,27 +28,70 @@ public class SelectedState extends VideoPlayerState implements Notifiable {
 
 		return instance;
 	}
+	
+	/**
+	 * process On request
+	 */
+	@Override
+	public void onRequest() {
+		timer.setTimeValue(10);
+	}
+	
+	/**
+	 * process off request
+	 */
+	@Override
+	public void offRequest() {
+		VideoPlayerContext.getInstance().changeState(OffState.getInstance());
+	}
 
 	/**
-	 * Delete this method if we can't change show that was selected during this
-	 * state. process select show request
-	 * 
-	 * @param show
+	 * process Select request
 	 */
+	@Override
 	public void selectRequest() {
 		timer.setTimeValue(10);
 		VideoPlayerContext.getInstance().showSelected();
 	}
 
+	/**
+	 * process play request
+	 */
+	@Override
 	public void playRequest() {
 		VideoPlayerContext.getInstance().changeState(PlayingState.getInstance());
 	}
+	
+	/**
+	 * process Pause request
+	 */
+	@Override
+	public void pauseRequest() {
+		timer.setTimeValue(10);
+	}
+	
+	/**
+	 * process Stop request
+	 */
+	@Override
+	public void stopRequest() {
+		timer.setTimeValue(10);
+	}
+	
+	/**
+	 * process Rewind request
+	 */
+	@Override
+	public void rewindRequest() {
+		timer.setTimeValue(10);
+	}
 
 	/**
-	 * process off request
+	 * process Fast Forward request
 	 */
-	public void offRequest() {
-		VideoPlayerContext.getInstance().changeState(OffState.getInstance());
+	@Override
+	public void fastFowardRequest() {
+		timer.setTimeValue(10);
 	}
 	
 	/**
@@ -78,10 +121,6 @@ public class SelectedState extends VideoPlayerState implements Notifiable {
 	public void leave() {
 		timer.stop();
 		timer = null;
-		/*
-		 * if (newState.equals(OffState.getInstance())) {
-		 * VideoPlayerContext.getInstance().showSelectOff(); }
-		 */
 	}
 
 	@Override
