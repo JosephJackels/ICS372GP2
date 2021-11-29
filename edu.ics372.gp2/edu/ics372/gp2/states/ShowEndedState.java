@@ -18,6 +18,8 @@ public class ShowEndedState extends VideoPlayerState {
 		}
 		return instance;
 	}
+	
+	//TODO handle events once a show is stopped
 
 	@Override
 	public void leave() {
@@ -28,7 +30,7 @@ public class ShowEndedState extends VideoPlayerState {
 	@Override
 	public void enter() {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 }

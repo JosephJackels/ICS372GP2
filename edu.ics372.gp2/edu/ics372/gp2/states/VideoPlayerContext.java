@@ -75,6 +75,10 @@ public class VideoPlayerContext {
 		display.showUnselected();
 	}
 
+	public void showStopped() {
+		display.showStopped();
+	}
+	
 	/**
 	 * Marked to be deleted if not needed.
 	 */
