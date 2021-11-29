@@ -122,6 +122,7 @@ public class PlayingState extends VideoPlayerState implements Notifiable {
 	public void onTimerRunsOut() {
 		// show that there is 0 time remaining
 		// change to ShowEndedState
+		VideoPlayerContext.getInstance().showStopped();
 		VideoPlayerContext.getInstance().showTimeLeft(0);
 		VideoPlayerContext.getInstance().changeState(ShowEndedState.getInstance());
 	}
