@@ -11,6 +11,7 @@ import edu.ics372.gp2.entities.Show;
 public class ScreenSaverState extends VideoPlayerState {
 	private static ScreenSaverState instance;
 	private VideoPlayerState previousState;
+	private Show show;
 
 	/**
 	 * private constructor for singleton
@@ -36,6 +37,10 @@ public class ScreenSaverState extends VideoPlayerState {
 		this.previousState = previousState;
 	}
 	
+	public void setShow(Show show) {
+		this.show = show;
+	}
+	
 	/**
 	 * process On request
 	 */
@@ -55,7 +60,9 @@ public class ScreenSaverState extends VideoPlayerState {
 	/**
 	 * Process selection request
 	 */
-	public void selectRequest(Show show) {
+	@Override
+	public void selectRequest() {
+		VideoPlayerContext.getInstance().setShow(show);
 		VideoPlayerContext.getInstance().changeState(previousState);
 	}
 	
@@ -74,6 +81,7 @@ public class ScreenSaverState extends VideoPlayerState {
 	/**
 	 * Process pause request
 	 */
+	@Override
 	public void pauseRequest() {
 		VideoPlayerContext.getInstance().changeState(previousState);
 	}
@@ -81,6 +89,7 @@ public class ScreenSaverState extends VideoPlayerState {
 	/**
 	 * Process stop request
 	 */
+	@Override
 	public void stopRequest() {
 		VideoPlayerContext.getInstance().changeState(previousState);
 	}
@@ -88,6 +97,7 @@ public class ScreenSaverState extends VideoPlayerState {
 	/**
 	 * Process rewind request
 	 */
+	@Override
 	public void rewindRequest() {
 		VideoPlayerContext.getInstance().changeState(previousState);
 	}
@@ -95,6 +105,7 @@ public class ScreenSaverState extends VideoPlayerState {
 	/**
 	 * Process fast forward request
 	 */
+	@Override
 	public void fastFowardRequest() {
 		VideoPlayerContext.getInstance().changeState(previousState);
 	}

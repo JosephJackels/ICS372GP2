@@ -19,7 +19,8 @@ public class SelectControl extends ListView {
 				 * Answer: If another show is selected, the state would not change. It would still be in a show selected state regardless of which show is selected.
 				 */
 				Show show = (Show) getSelectionModel().getSelectedItem();
-				VideoPlayerContext.getInstance().selectRequest(show);
+				VideoPlayerContext.getInstance().setShow(show);
+				VideoPlayerContext.getInstance().selectRequest();
 			}
 		});
 

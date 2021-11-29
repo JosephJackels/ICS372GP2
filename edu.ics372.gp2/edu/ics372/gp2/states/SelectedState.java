@@ -6,8 +6,8 @@ import edu.ics372.gp2.timer.Timer;
 
 public class SelectedState extends VideoPlayerState implements Notifiable {
 	private static SelectedState instance;
-	private Show show = null;
 	private Timer timer;
+
 
 	/**
 	 * Private constructor for singleton pattern.
@@ -35,10 +35,9 @@ public class SelectedState extends VideoPlayerState implements Notifiable {
 	 * 
 	 * @param show
 	 */
-	public void selectRequest(Show show) {
-		this.show = show;
-		VideoPlayerContext.getInstance().setShow(show);
-		VideoPlayerContext.getInstance().showSelected(show);
+	public void selectRequest() {
+		timer.setTimeValue(10);
+		VideoPlayerContext.getInstance().showSelected();
 	}
 
 	public void playRequest() {
@@ -58,6 +57,7 @@ public class SelectedState extends VideoPlayerState implements Notifiable {
 	@Override
 	public void onTimerRunsOut() {
 		ScreenSaverState.getInstance().setPreviousState(this);
+		ScreenSaverState.getInstance().setShow(VideoPlayerContext.getInstance().getShow());
 		VideoPlayerContext.getInstance().changeState(ScreenSaverState.getInstance());
 	}
 
@@ -67,14 +67,12 @@ public class SelectedState extends VideoPlayerState implements Notifiable {
 	@Override
 	public void enter() {
 		timer = new Timer(this, 10);
-		this.show = VideoPlayerContext.getInstance().getShow();
-		VideoPlayerContext.getInstance().showSelected(show);
+		VideoPlayerContext.getInstance().showSelected();
 	}
 
 	/**
 	 * Uninitialized the state.
 	 * 
-	 * @param newState
 	 */
 	@Override
 	public void leave() {
