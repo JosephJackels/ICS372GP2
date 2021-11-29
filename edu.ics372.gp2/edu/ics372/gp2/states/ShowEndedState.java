@@ -33,7 +33,6 @@ public class ShowEndedState extends VideoPlayerState implements Notifiable{
 	@Override
 	public void leave() {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
