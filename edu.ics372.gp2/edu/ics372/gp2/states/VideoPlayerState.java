@@ -65,7 +65,7 @@ public abstract class VideoPlayerState {
 	/**
 	 * Process selection
 	 */
-	public void selectRequest(Show show) {
+	public void selectRequest() {
 
 	}
 

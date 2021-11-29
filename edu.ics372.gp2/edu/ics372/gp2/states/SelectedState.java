@@ -4,7 +4,7 @@ import edu.ics372.gp2.entities.Show;
 
 public class SelectedState extends VideoPlayerState {
 	private static SelectedState instance;
-	private Show show = null;
+
 
 	/**
 	 * Private constructor for singleton pattern.
@@ -32,9 +32,8 @@ public class SelectedState extends VideoPlayerState {
 	 * 
 	 * @param show
 	 */
-	public void selectRequest(Show show) {
-		this.show = show;
-		VideoPlayerContext.getInstance().showSelected(show);
+	public void selectRequest() {
+		VideoPlayerContext.getInstance().showSelected();
 	}
 
 	public void playRequest() {
@@ -53,8 +52,7 @@ public class SelectedState extends VideoPlayerState {
 	 */
 	@Override
 	public void enter() {
-		this.show = VideoPlayerContext.getInstance().getShow();
-		VideoPlayerContext.getInstance().showSelected(show);
+		VideoPlayerContext.getInstance().showSelected();
 	}
 
 	/**

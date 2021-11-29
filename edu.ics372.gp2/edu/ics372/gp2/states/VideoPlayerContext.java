@@ -69,7 +69,7 @@ public class VideoPlayerContext {
 		display.showTurnOff();
 	}
 
-	public void showSelected(Show show) {
+	public void showSelected() {
 		display.showSelected(show.getShowName(), Integer.toString(show.getShowLength()));
 	}
 
@@ -98,8 +98,8 @@ public class VideoPlayerContext {
 		currentState.onRequest();
 	}
 
-	public void selectRequest(Show show) {
-		currentState.selectRequest(show);
+	public void selectRequest() {
+		currentState.selectRequest();
 	}
 
 	public void playShowRequest() {
