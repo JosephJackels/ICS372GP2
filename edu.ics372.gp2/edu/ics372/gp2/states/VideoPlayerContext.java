@@ -105,13 +105,21 @@ public class VideoPlayerContext {
 	public void playShowRequest() {
 		currentState.playRequest();
 	}
+	
+	public void pauseRequest() {
+		currentState.onRequest();
+	}
+	
+	public void stopRequest() {
+		currentState.stopRequest();
+	}
 
-	public void reqindRequest() {
-
+	public void rewindRequest() {
+		currentState.rewindRequest();
 	}
 
 	public void fastForwardRequest() {
-
+		currentState.fastFowardRequest();
 	}
 
 	public VideoPlayerState getCurrentState() {

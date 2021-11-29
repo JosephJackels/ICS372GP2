@@ -1,9 +1,12 @@
 package edu.ics372.gp2.states;
 
 import edu.ics372.gp2.entities.Show;
+import edu.ics372.gp2.timer.Notifiable;
+import edu.ics372.gp2.timer.Timer;
 
-public class SelectedState extends VideoPlayerState {
+public class SelectedState extends VideoPlayerState implements Notifiable {
 	private static SelectedState instance;
+	private Timer timer;
 
 
 	/**
@@ -33,6 +36,7 @@ public class SelectedState extends VideoPlayerState {
 	 * @param show
 	 */
 	public void selectRequest() {
+		timer.setTimeValue(10);
 		VideoPlayerContext.getInstance().showSelected();
 	}
 
@@ -46,26 +50,48 @@ public class SelectedState extends VideoPlayerState {
 	public void offRequest() {
 		VideoPlayerContext.getInstance().changeState(OffState.getInstance());
 	}
+	
+	/**
+	 * process timeout after no buttons pressed
+	 */
+	@Override
+	public void onTimerRunsOut() {
+		ScreenSaverState.getInstance().setPreviousState(this);
+		ScreenSaverState.getInstance().setShow(VideoPlayerContext.getInstance().getShow());
+		VideoPlayerContext.getInstance().changeState(ScreenSaverState.getInstance());
+	}
 
 	/**
 	 * initialized the State
 	 */
 	@Override
 	public void enter() {
+		timer = new Timer(this, 10);
 		VideoPlayerContext.getInstance().showSelected();
 	}
 
 	/**
 	 * Uninitialized the state.
 	 * 
-	 * @param newState
 	 */
 	@Override
 	public void leave() {
+		timer.stop();
+		timer = null;
 		/*
 		 * if (newState.equals(OffState.getInstance())) {
 		 * VideoPlayerContext.getInstance().showSelectOff(); }
 		 */
+	}
+
+	@Override
+	public void OnTimerTick(int timerValue) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void onVideoRunsOut() {
+		// TODO Auto-generated method stub
 	}
 
 }

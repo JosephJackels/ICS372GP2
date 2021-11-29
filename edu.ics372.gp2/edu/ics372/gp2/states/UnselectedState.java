@@ -98,8 +98,8 @@ public class UnselectedState extends VideoPlayerState implements Notifiable {
 	 */
 	@Override
 	public void onTimerRunsOut() {
+		ScreenSaverState.getInstance().setPreviousState(this);
 		VideoPlayerContext.getInstance().changeState(ScreenSaverState.getInstance());
-
 	}
 
 	@Override
