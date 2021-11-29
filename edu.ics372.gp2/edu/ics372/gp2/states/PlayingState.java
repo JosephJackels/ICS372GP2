@@ -36,17 +36,6 @@ public class PlayingState extends VideoPlayerState implements Notifiable {
 
 	// TODO add other events
 
-	/**
-	 * Process play request
-	 */
-	@Override
-	public void playRequest() {
-		// update timer
-		// display time
-
-		// shouldnt this method not do anything?
-		// if the show is already playing, pressing play should do nothing right?
-	}
 
 	/**
 	 * Process timer tick
@@ -66,6 +55,7 @@ public class PlayingState extends VideoPlayerState implements Notifiable {
 		// TODO Auto-generated method stub
 		// show 0 time left
 		// change to idle state
+		
 	}
 	
 	
@@ -74,8 +64,8 @@ public class PlayingState extends VideoPlayerState implements Notifiable {
 	 */
 	@Override
 	public void stopRequest() {
-		VideoPlayerContext.getInstance().changeState(ShowEndedState.getInstance());
 		VideoPlayerContext.getInstance().showStopped();
+		VideoPlayerContext.getInstance().changeState(ShowEndedState.getInstance());
 	}
 	
 	/**
@@ -125,7 +115,7 @@ public class PlayingState extends VideoPlayerState implements Notifiable {
 		show = VideoPlayerContext.getInstance().getShow();
 		timer = new Timer(this, show.getShowLength() - show.getElapsedTime());
 		VideoPlayerContext.getInstance().showPlaying();
-//		VideoPlayerContext.getInstance().showSelected();
+		VideoPlayerContext.getInstance().showSelected();
 	}
 
 	@Override
