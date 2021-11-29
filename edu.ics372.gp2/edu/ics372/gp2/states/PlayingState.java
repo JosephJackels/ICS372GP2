@@ -75,6 +75,7 @@ public class PlayingState extends VideoPlayerState implements Notifiable {
 	public void pauseRequest() {
 		// save elapsed time somehow?
 		show.setElapsedTime(show.getShowLength() - timer.getTimeValue());
+		PausedState.getInstance().setShow(show);
 		VideoPlayerContext.getInstance().changeState(PausedState.getInstance());
 	}
 
@@ -106,7 +107,8 @@ public class PlayingState extends VideoPlayerState implements Notifiable {
 		// can be stored and retrieved whenever leaving the state?
 		show = VideoPlayerContext.getInstance().getShow();
 		timer = new Timer(this, show.getShowLength() - show.getElapsedTime());
-		VideoPlayerContext.getInstance().showSelected();
+		VideoPlayerContext.getInstance().showPlaying();
+//		VideoPlayerContext.getInstance().showSelected();
 	}
 
 	@Override

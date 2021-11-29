@@ -1,7 +1,10 @@
 package edu.ics372.gp2.states;
 
+import edu.ics372.gp2.entities.Show;
+
 public class PausedState extends VideoPlayerState {
 	private static PausedState instance;
+	private Show show;
 
 	private PausedState() {
 
@@ -14,16 +17,54 @@ public class PausedState extends VideoPlayerState {
 		return instance;
 	}
 
+	/**
+	 * process Off request.
+	 */
+	@Override
+	public void offRequest() {
+		VideoPlayerContext.getInstance().changeState(OffState.getInstance());
+	}
+	
+	/**
+	 * process Play request
+	 */
+	@Override
+	public void playRequest() {
+		VideoPlayerContext.getInstance().setShow(show);
+		VideoPlayerContext.getInstance().changeState(PlayingState.getInstance());
+	}
+	
+	/**
+	 * process Stop request
+	 */
+	@Override
+	public void stopRequest() {
+		VideoPlayerContext.getInstance().changeState(ShowEndedState.getInstance());
+	}
+	
+	
 	@Override
 	public void leave() {
-		// TODO Auto-generated method stub
-
 	}
-
+	
+	/**
+	 * initialize the state
+	 * 
+	 */
 	@Override
 	public void enter() {
-		// TODO Auto-generated method stub
+		VideoPlayerContext.getInstance().showPaused();
 
 	}
+
+	public Show getShow() {
+		return show;
+	}
+
+	public void setShow(Show show) {
+		this.show = show;
+	}
+	
+	
 
 }

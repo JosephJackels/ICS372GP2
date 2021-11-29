@@ -21,8 +21,6 @@ public class VideoPlayerContext {
 	private VideoPlayerContext() {
 		instance = this;
 		currentState = OffState.getInstance();
-		// set current state to idle unselected
-		// currentState =
 	}
 
 	/**
@@ -77,6 +75,9 @@ public class VideoPlayerContext {
 		display.showUnselected();
 	}
 
+	/**
+	 * Marked to be deleted if not needed.
+	 */
 	public void showSelectOff() {
 		display.showSelectingOff();
 	}
@@ -86,6 +87,14 @@ public class VideoPlayerContext {
 
 	}
 
+	public void showPlaying() {
+		display.showPlaying();
+	}
+	
+	public void showPaused() {
+		display.showPaused();
+	}
+	
 	public void showTimeLeft(int time) {
 		display.showTimeRemaining(time);
 	}
@@ -107,7 +116,7 @@ public class VideoPlayerContext {
 	}
 	
 	public void pauseRequest() {
-		currentState.onRequest();
+		currentState.pauseRequest();
 	}
 	
 	public void stopRequest() {
