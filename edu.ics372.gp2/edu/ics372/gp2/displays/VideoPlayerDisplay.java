@@ -25,7 +25,12 @@ public interface VideoPlayerDisplay {
 	 * 
 	 */
 	public void showPlaying();
-
+	
+	/**
+	 * Display fast forwarding
+	 */
+	public void showFastForward();
+	
 	/**
 	 * 
 	 */

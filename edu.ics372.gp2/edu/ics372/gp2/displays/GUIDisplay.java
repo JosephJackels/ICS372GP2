@@ -125,6 +125,14 @@ public class GUIDisplay extends Application implements VideoPlayerDisplay {
 		videoPlayerStatus.setText("Video Status: Playing\n");
 		
 	}
+	
+	/**
+	 * Indicate fast forwarding
+	 */
+	@Override
+	public void showFastForward() {
+		videoPlayerStatus.setText("Video Status: Fast Forwarding\n");
+	}
 
 	/**
 	 * Indicate show is ended (Should the name be changed to displayShowEnded?)
@@ -137,7 +145,7 @@ public class GUIDisplay extends Application implements VideoPlayerDisplay {
 	}
 
 	/**
-	 * Indicate show is selected and displats show info
+	 * Indicate show is selected and displays show info
 	 */
 	@Override
 	public void showSelected(String showName, String showLength) {

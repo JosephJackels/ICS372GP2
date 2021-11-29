@@ -37,17 +37,42 @@ public class PlayingState extends VideoPlayerState implements Notifiable {
 	// TODO add other events
 
 	/**
-	 * Process play request
+	 * Process off
 	 */
 	@Override
-	public void playRequest() {
-		// update timer
-		// display time
-
-		// shouldnt this method not do anything?
-		// if the show is already playing, pressing play should do nothing right?
+	public void offRequest() {
+		VideoPlayerContext.getInstance().changeState(OffState.getInstance());
 	}
-
+	
+	/**
+	 * Process pause
+	 */
+	public void pauseRequest() {
+		// save elapsed time somehow?
+		show.setElapsedTime(show.getShowLength() - timer.getTimeValue());
+		PausedState.getInstance().setShow(show);
+		VideoPlayerContext.getInstance().changeState(PausedState.getInstance());
+	}
+	
+	/**
+	 * Process stop
+	 */
+	@Override
+	public void stopRequest() {
+		VideoPlayerContext.getInstance().changeState(ShowEndedState.getInstance());
+//		VideoPlayerContext.getInstance().showStopped(); <- this should be handled by showEndedState upon entering.
+	}
+	
+	/**
+	 * Process fast forwarding
+	 */
+	@Override
+	public void fastFowardRequest() {
+		show.setElapsedTime(show.getShowLength() - timer.getTimeValue());
+		FastForwardState.getInstance().setShow(show);
+		VideoPlayerContext.getInstance().changeState(FastForwardState.getInstance());
+	}
+	
 	/**
 	 * Process timer tick
 	 */
@@ -66,34 +91,6 @@ public class PlayingState extends VideoPlayerState implements Notifiable {
 		// TODO Auto-generated method stub
 		// show 0 time left
 		// change to idle state
-	}
-	
-	
-	/**
-	 * process stop
-	 */
-	@Override
-	public void stopRequest() {
-		VideoPlayerContext.getInstance().changeState(ShowEndedState.getInstance());
-		VideoPlayerContext.getInstance().showStopped();
-	}
-	
-	/**
-	 * process off
-	 */
-	@Override
-	public void offRequest() {
-		VideoPlayerContext.getInstance().changeState(OffState.getInstance());
-	}
-
-	/**
-	 * process pause
-	 */
-	public void pauseRequest() {
-		// save elapsed time somehow?
-		show.setElapsedTime(show.getShowLength() - timer.getTimeValue());
-		PausedState.getInstance().setShow(show);
-		VideoPlayerContext.getInstance().changeState(PausedState.getInstance());
 	}
 
 	/**
