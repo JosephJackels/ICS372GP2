@@ -82,7 +82,7 @@ public class PlayingState extends VideoPlayerState implements Notifiable {
 	 * Process leaving playing state
 	 */
 	@Override
-	public void leave(VideoPlayerState newState) {
+	public void leave() {
 
 		// set clock to zero and null
 		// change video player context to not playing
@@ -90,10 +90,6 @@ public class PlayingState extends VideoPlayerState implements Notifiable {
 		timer = null;
 
 		// if show is finished or stop button is pressed reset show's elapsed time
-		if (newState.equals(newState.equals(ShowEndedState.getInstance()))) {
-			show.setElapsedTime(0);
-		}
-
 	}
 
 	/**

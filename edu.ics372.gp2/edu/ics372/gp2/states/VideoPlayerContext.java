@@ -60,7 +60,7 @@ public class VideoPlayerContext {
 	 * @param newState
 	 */
 	public void changeState(VideoPlayerState newState) {
-		currentState.leave(newState);
+		currentState.leave();
 		currentState = newState;
 		currentState.enter();
 	}

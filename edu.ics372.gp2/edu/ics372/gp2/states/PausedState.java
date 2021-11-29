@@ -15,7 +15,7 @@ public class PausedState extends VideoPlayerState {
 	}
 
 	@Override
-	public void leave(VideoPlayerState newState) {
+	public void leave() {
 		// TODO Auto-generated method stub
 
 	}

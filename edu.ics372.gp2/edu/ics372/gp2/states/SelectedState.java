@@ -63,10 +63,11 @@ public class SelectedState extends VideoPlayerState {
 	 * @param newState
 	 */
 	@Override
-	public void leave(VideoPlayerState newState) {
-		if (newState.equals(OffState.getInstance())) {
-			VideoPlayerContext.getInstance().showSelectOff();
-		}
+	public void leave() {
+		/*
+		 * if (newState.equals(OffState.getInstance())) {
+		 * VideoPlayerContext.getInstance().showSelectOff(); }
+		 */
 	}
 
 }

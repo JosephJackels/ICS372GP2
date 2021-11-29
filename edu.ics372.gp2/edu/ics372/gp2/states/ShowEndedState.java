@@ -20,7 +20,7 @@ public class ShowEndedState extends VideoPlayerState {
 	}
 
 	@Override
-	public void leave(VideoPlayerState newState) {
+	public void leave() {
 		// TODO Auto-generated method stub
 
 	}

@@ -1,7 +1,8 @@
 package edu.ics372.gp2.states;
 
-import edu.ics372.gp2.timer.*;
 import edu.ics372.gp2.entities.Show;
+import edu.ics372.gp2.timer.Notifiable;
+import edu.ics372.gp2.timer.Timer;
 
 public class UnselectedState extends VideoPlayerState implements Notifiable {
 	private static UnselectedState instance;
@@ -129,18 +130,16 @@ public class UnselectedState extends VideoPlayerState implements Notifiable {
 	 * @param newState
 	 */
 	@Override
-	public void leave(VideoPlayerState newState) {
-		if (newState.equals(OffState.getInstance())) {
-			timer.stop();
-			timer = null;
-			VideoPlayerContext.getInstance().showSelectOff();
-		}
-
-		if (newState.equals(ScreenSaverState.getInstance())) {
-			timer.stop();
-			timer = null;
-			VideoPlayerContext.getInstance().showScreenSaver();
-		}
+	public void leave() {
+		/*
+		 * if (newState.equals(OffState.getInstance())) { timer.stop(); timer = null;
+		 * VideoPlayerContext.getInstance().showSelectOff(); }
+		 * 
+		 * if (newState.equals(ScreenSaverState.getInstance())) { timer.stop(); timer =
+		 * null; VideoPlayerContext.getInstance().showScreenSaver(); }
+		 */
+		timer.stop();
+		timer = null;
 	}
 
 }
