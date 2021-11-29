@@ -27,12 +27,15 @@ public class ShowEndedState extends VideoPlayerState implements Notifiable{
 	
 	@Override
 	public void playRequest() {
+		timer.stop();
 		VideoPlayerContext.getInstance().changeState(PlayingState.getInstance());
 	}
 
 	@Override
 	public void leave() {
 		// TODO Auto-generated method stub
+		timer.stop();
+		VideoPlayerContext.getInstance().showTimeLeft(0);
 	}
 
 	@Override
