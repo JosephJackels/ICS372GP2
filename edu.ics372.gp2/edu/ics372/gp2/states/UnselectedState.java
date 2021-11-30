@@ -105,8 +105,6 @@ public class UnselectedState extends VideoPlayerState implements Notifiable {
 
 	@Override
 	public void OnTimerTick(int timerValue) {
-		// TODO Auto-generated method stub
-
 	}
 
 	/**

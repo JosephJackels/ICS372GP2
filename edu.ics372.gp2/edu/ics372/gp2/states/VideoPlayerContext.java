@@ -48,8 +48,6 @@ public class VideoPlayerContext {
 	 * Lets idle unselected be the default starting state
 	 */
 	public void initialize() {
-		// set state to idle unselected
-		// instance.changeState(idleState.getInstance());
 	}
 
 	/**

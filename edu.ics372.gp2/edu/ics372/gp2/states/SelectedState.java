@@ -100,7 +100,6 @@ public class SelectedState extends VideoPlayerState implements Notifiable {
 	@Override
 	public void onTimerRunsOut() {
 		ScreenSaverState.getInstance().setPreviousState(this);
-		ScreenSaverState.getInstance().setShow(VideoPlayerContext.getInstance().getShow());
 		VideoPlayerContext.getInstance().changeState(ScreenSaverState.getInstance());
 	}
 
@@ -125,6 +124,5 @@ public class SelectedState extends VideoPlayerState implements Notifiable {
 
 	@Override
 	public void OnTimerTick(int timerValue) {
-		// TODO Auto-generated method stub
 	}
 }

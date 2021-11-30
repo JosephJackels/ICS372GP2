@@ -62,8 +62,6 @@ public class FastForwardState extends VideoPlayerState implements Notifiable {
 	public void leave() {
 		timer.stop();
 		timer = null;
-		// VideoPlayerContext.getInstance().setShow(show);
-
 	}
 
 	/**
@@ -76,14 +74,6 @@ public class FastForwardState extends VideoPlayerState implements Notifiable {
 		int time = (timeLeft % 2 == 0) ? (timeLeft / 2) : (timeLeft / 2) + 1;
 		timer = new Timer(this, time);
 		VideoPlayerContext.getInstance().showFastForward();
-	}
-
-	public Show getShow() {
-		return show;
-	}
-
-	public void setShow(Show show) {
-		this.show = show;
 	}
 
 	@Override

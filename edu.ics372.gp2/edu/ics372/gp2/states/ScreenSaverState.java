@@ -11,7 +11,6 @@ import edu.ics372.gp2.entities.Show;
 public class ScreenSaverState extends VideoPlayerState {
 	private static ScreenSaverState instance;
 	private VideoPlayerState previousState;
-	private Show show;
 
 	/**
 	 * private constructor for singleton
@@ -35,10 +34,6 @@ public class ScreenSaverState extends VideoPlayerState {
 
 	public void setPreviousState(VideoPlayerState previousState) {
 		this.previousState = previousState;
-	}
-
-	public void setShow(Show show) {
-		this.show = show;
 	}
 
 	/**
@@ -112,7 +107,6 @@ public class ScreenSaverState extends VideoPlayerState {
 
 	@Override
 	public void leave() {
-		// VideoPlayerContext.getInstance().setShow(show);
 	}
 
 	/**
@@ -121,7 +115,6 @@ public class ScreenSaverState extends VideoPlayerState {
 	 */
 	@Override
 	public void enter() {
-		this.show = VideoPlayerContext.getInstance().getShow();
 		VideoPlayerContext.getInstance().showScreenSaver();
 	}
 

@@ -49,6 +49,7 @@ public class ShowEndedState extends VideoPlayerState implements Notifiable {
 	@Override
 	public void leave() {
 		timer.stop();
+		timer = null;
 		VideoPlayerContext.getInstance().showTimeLeft(0);
 	}
 

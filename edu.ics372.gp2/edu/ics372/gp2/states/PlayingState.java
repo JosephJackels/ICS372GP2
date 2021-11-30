@@ -34,8 +34,6 @@ public class PlayingState extends VideoPlayerState implements Notifiable {
 		return instance;
 	}
 
-	// TODO add other events
-
 	/**
 	 * Process off
 	 */
@@ -48,7 +46,6 @@ public class PlayingState extends VideoPlayerState implements Notifiable {
 	 * Process pause
 	 */
 	public void pauseRequest() {
-		// save elapsed time somehow?
 		show.setElapsedTime(show.getShowLength() - timer.getTimeValue());
 		VideoPlayerContext.getInstance().changeState(PausedState.getInstance());
 	}
@@ -84,8 +81,6 @@ public class PlayingState extends VideoPlayerState implements Notifiable {
 	 */
 	@Override
 	public void OnTimerTick(int timerValue) {
-		// TODO Auto-generated method stub
-		// show time left
 		VideoPlayerContext.getInstance().showTimeLeft(timerValue);
 	}
 
@@ -94,14 +89,8 @@ public class PlayingState extends VideoPlayerState implements Notifiable {
 	 */
 	@Override
 	public void leave() {
-
-		// set clock to zero and null
-		// change video player context to not playing
 		timer.stop();
 		timer = null;
-		// VideoPlayerContext.getInstance().setShow(show);
-
-		// if show is finished or stop button is pressed reset show's elapsed time
 	}
 
 	/**
@@ -109,13 +98,6 @@ public class PlayingState extends VideoPlayerState implements Notifiable {
 	 */
 	@Override
 	public void enter() {
-		// create new timer
-		// show time of video
-
-		// Can't just create a new timer can we? What happens when we leave
-		// playing state to paused state and return? Need some way to track elapsed
-		// time? I think maybe have that be another field in the show object that
-		// can be stored and retrieved whenever leaving the state?
 		show = VideoPlayerContext.getInstance().getShow();
 		timer = new Timer(this, show.getShowLength() - show.getElapsedTime());
 		VideoPlayerContext.getInstance().showPlaying();
@@ -123,9 +105,6 @@ public class PlayingState extends VideoPlayerState implements Notifiable {
 
 	@Override
 	public void onTimerRunsOut() {
-		// show that there is 0 time remaining
-		// change to ShowEndedState
-//		VideoPlayerContext.getInstance().showStopped(); <- move this into the enter() method of ShowEndedState
 		VideoPlayerContext.getInstance().showTimeLeft(0);
 		VideoPlayerContext.getInstance().changeState(ShowEndedState.getInstance());
 	}
