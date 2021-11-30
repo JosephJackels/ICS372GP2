@@ -99,6 +99,10 @@ public class VideoPlayerContext {
 		display.showPaused();
 	}
 	
+	public void showFastForward() {
+		display.showFastForward();
+	}
+	
 	public void showTimeLeft(int time) {
 		display.showTimeRemaining(time);
 	}

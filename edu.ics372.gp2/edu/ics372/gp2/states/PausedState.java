@@ -49,7 +49,7 @@ public class PausedState extends VideoPlayerState {
 	}
 	
 	/**
-	 * initialize the state
+	 * Initialize the state
 	 * 
 	 */
 	@Override
