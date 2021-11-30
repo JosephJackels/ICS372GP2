@@ -36,7 +36,43 @@ public class PlayingState extends VideoPlayerState implements Notifiable {
 
 	// TODO add other events
 
+	/**
+	 * Process off
+	 */
+	@Override
+	public void offRequest() {
+		VideoPlayerContext.getInstance().changeState(OffState.getInstance());
+	}
 
+	/**
+	 * Process pause
+	 */
+	public void pauseRequest() {
+		// save elapsed time somehow?
+		show.setElapsedTime(show.getShowLength() - timer.getTimeValue());
+		PausedState.getInstance().setShow(show);
+		VideoPlayerContext.getInstance().changeState(PausedState.getInstance());
+	}
+	
+	/**
+	 * Process stop
+	 */
+	@Override
+	public void stopRequest() {
+		VideoPlayerContext.getInstance().changeState(ShowEndedState.getInstance());
+//		VideoPlayerContext.getInstance().showStopped(); <- this should be handled by showEndedState upon entering.
+	}
+	
+	/**
+	 * Process fast forwarding
+	 */
+	@Override
+	public void fastFowardRequest() {
+		show.setElapsedTime(show.getShowLength() - timer.getTimeValue());
+		FastForwardState.getInstance().setShow(show);
+		VideoPlayerContext.getInstance().changeState(FastForwardState.getInstance());
+	}
+	
 	/**
 	 * Process timer tick
 	 */
@@ -47,32 +83,14 @@ public class PlayingState extends VideoPlayerState implements Notifiable {
 		VideoPlayerContext.getInstance().showTimeLeft(timerValue);
 	}
 
-	
 	/**
-	 * process stop
+	 * Process the video ending
 	 */
 	@Override
-	public void stopRequest() {
-		VideoPlayerContext.getInstance().showStopped();
-		VideoPlayerContext.getInstance().changeState(ShowEndedState.getInstance());
-	}
-	
-	/**
-	 * process off
-	 */
-	@Override
-	public void offRequest() {
-		VideoPlayerContext.getInstance().changeState(OffState.getInstance());
-	}
-
-	/**
-	 * process pause
-	 */
-	public void pauseRequest() {
-		// save elapsed time somehow?
-		show.setElapsedTime(show.getShowLength() - timer.getTimeValue());
-		PausedState.getInstance().setShow(show);
-		VideoPlayerContext.getInstance().changeState(PausedState.getInstance());
+	public void onVideoRunsOut() {
+		// TODO Auto-generated method stub
+		// show 0 time left
+		// change to idle state
 	}
 
 	/**
@@ -111,7 +129,7 @@ public class PlayingState extends VideoPlayerState implements Notifiable {
 	public void onTimerRunsOut() {
 		// show that there is 0 time remaining
 		// change to ShowEndedState
-		VideoPlayerContext.getInstance().showStopped();
+//		VideoPlayerContext.getInstance().showStopped(); <- move this into the enter() method of ShowEndedState
 		VideoPlayerContext.getInstance().showTimeLeft(0);
 		VideoPlayerContext.getInstance().changeState(ShowEndedState.getInstance());
 	}
