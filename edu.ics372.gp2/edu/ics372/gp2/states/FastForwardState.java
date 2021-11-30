@@ -102,10 +102,4 @@ public class FastForwardState extends VideoPlayerState implements Notifiable {
 		VideoPlayerContext.getInstance().changeState(ShowEndedState.getInstance());
 		
 	}
-
-	@Override
-	public void onVideoRunsOut() {
-		// TODO Auto-generated method stub
-		
-	}
 }
