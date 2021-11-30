@@ -119,7 +119,6 @@ public class PlayingState extends VideoPlayerState implements Notifiable {
 		show = VideoPlayerContext.getInstance().getShow();
 		timer = new Timer(this, show.getShowLength() - show.getElapsedTime());
 		VideoPlayerContext.getInstance().showPlaying();
-		VideoPlayerContext.getInstance().showSelected();
 	}
 
 	@Override

@@ -32,6 +32,7 @@ import javafx.stage.WindowEvent;
  */
 public class GUIDisplay extends Application implements VideoPlayerDisplay {
 
+	private Show show;
 	private GUIButton offButton;
 	private GUIButton onButton;
 	private GUIButton pauseButton;
@@ -122,8 +123,9 @@ public class GUIDisplay extends Application implements VideoPlayerDisplay {
 	 */
 	@Override
 	public void showPlaying() {
+		show = VideoPlayerContext.getInstance().getShow();
 		videoPlayerStatus.setText("Video Status: Playing\n");
-		
+		infoText.setText("Show: " + show.getShowName() + "\nShow length: " + show.getShowLength() + " seconds\n");
 	}
 	
 	/**
