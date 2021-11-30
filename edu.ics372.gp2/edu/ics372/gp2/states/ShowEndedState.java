@@ -27,6 +27,11 @@ public class ShowEndedState extends VideoPlayerState implements Notifiable{
 	// off, select, stop (unselected)
 	
 	@Override
+	public void offRequest() {
+		
+	}
+	
+	@Override
 	public void playRequest() {
 		timer.stop();
 		VideoPlayerContext.getInstance().changeState(PlayingState.getInstance());
@@ -41,7 +46,8 @@ public class ShowEndedState extends VideoPlayerState implements Notifiable{
 
 	@Override
 	public void enter() {
-		// TODO show 10 second count down
+		VideoPlayerContext.getInstance().getShow().setElapsedTime(0);
+		VideoPlayerContext.getInstance().showStopped();
 		timer = new Timer(this, 10);
 		VideoPlayerContext.getInstance().showTimeLeft(10);
 	}
@@ -54,7 +60,7 @@ public class ShowEndedState extends VideoPlayerState implements Notifiable{
 
 	@Override
 	public void onTimerRunsOut() {
-		ScreenSaverState.getInstance().setPreviousState(SelectedState.getInstance());
+		ScreenSaverState.getInstance().setPreviousState(UnselectedState.getInstance());
 		VideoPlayerContext.getInstance().changeState(ScreenSaverState.getInstance());
 	}
 

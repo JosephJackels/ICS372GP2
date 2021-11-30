@@ -17,6 +17,4 @@ public interface Notifiable {
 	 */
 	public void onTimerRunsOut();
 	
-	public void onVideoRunsOut();
-
 }
