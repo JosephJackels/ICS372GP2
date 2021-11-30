@@ -39,7 +39,6 @@ public class PausedState extends VideoPlayerState {
 	 */
 	@Override
 	public void stopRequest() {
-		VideoPlayerContext.getInstance().showStopped();
 		VideoPlayerContext.getInstance().changeState(ShowEndedState.getInstance());
 	}
 	
