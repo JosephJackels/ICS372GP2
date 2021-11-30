@@ -24,6 +24,7 @@ public class ShowEndedState extends VideoPlayerState implements Notifiable{
 	}
 	
 	//TODO handle events once a show is stopped
+	// off, select, stop (unselected)
 	
 	@Override
 	public void playRequest() {
@@ -53,6 +54,7 @@ public class ShowEndedState extends VideoPlayerState implements Notifiable{
 
 	@Override
 	public void onTimerRunsOut() {
+		ScreenSaverState.getInstance().setPreviousState(SelectedState.getInstance());
 		VideoPlayerContext.getInstance().changeState(ScreenSaverState.getInstance());
 	}
 
