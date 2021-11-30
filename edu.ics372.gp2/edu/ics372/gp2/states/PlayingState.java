@@ -43,7 +43,7 @@ public class PlayingState extends VideoPlayerState implements Notifiable {
 	public void offRequest() {
 		VideoPlayerContext.getInstance().changeState(OffState.getInstance());
 	}
-	
+
 	/**
 	 * Process pause
 	 */
@@ -122,13 +122,14 @@ public class PlayingState extends VideoPlayerState implements Notifiable {
 		show = VideoPlayerContext.getInstance().getShow();
 		timer = new Timer(this, show.getShowLength() - show.getElapsedTime());
 		VideoPlayerContext.getInstance().showPlaying();
-//		VideoPlayerContext.getInstance().showSelected();
+		VideoPlayerContext.getInstance().showSelected();
 	}
 
 	@Override
 	public void onTimerRunsOut() {
 		// show that there is 0 time remaining
 		// change to ShowEndedState
+		VideoPlayerContext.getInstance().showStopped();
 		VideoPlayerContext.getInstance().showTimeLeft(0);
 		VideoPlayerContext.getInstance().changeState(ShowEndedState.getInstance());
 	}

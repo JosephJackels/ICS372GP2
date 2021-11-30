@@ -139,7 +139,7 @@ public class GUIDisplay extends Application implements VideoPlayerDisplay {
 	 */
 	@Override
 	public void showStopped() {
-		videoPlayerStatus.setText("Video Status: Stopped, show ended\n");
+		videoPlayerStatus.setText("Video Status: show ended\n");
 		infoText.setText("");
 		timerValue.setText("");
 	}
