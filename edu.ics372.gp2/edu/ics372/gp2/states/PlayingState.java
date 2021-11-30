@@ -47,17 +47,6 @@ public class PlayingState extends VideoPlayerState implements Notifiable {
 		VideoPlayerContext.getInstance().showTimeLeft(timerValue);
 	}
 
-	/**
-	 * Process the video ending
-	 */
-	@Override
-	public void onVideoRunsOut() {
-		// TODO Auto-generated method stub
-		// show 0 time left
-		// change to idle state
-		
-	}
-	
 	
 	/**
 	 * process stop

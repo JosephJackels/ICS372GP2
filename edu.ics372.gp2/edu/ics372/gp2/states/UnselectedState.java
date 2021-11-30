@@ -108,12 +108,6 @@ public class UnselectedState extends VideoPlayerState implements Notifiable {
 
 	}
 
-	@Override
-	public void onVideoRunsOut() {
-		// TODO Auto-generated method stub
-
-	}
-
 	/**
 	 * initialize the State.
 	 */

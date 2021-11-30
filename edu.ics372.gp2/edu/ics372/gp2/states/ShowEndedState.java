@@ -64,9 +64,4 @@ public class ShowEndedState extends VideoPlayerState implements Notifiable{
 		VideoPlayerContext.getInstance().changeState(ScreenSaverState.getInstance());
 	}
 
-	@Override
-	public void onVideoRunsOut() {
-		// TODO Auto-generated method stub
-	}
-
 }
