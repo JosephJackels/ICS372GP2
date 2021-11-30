@@ -103,5 +103,4 @@ public class FastForwardState extends VideoPlayerState implements Notifiable {
 		VideoPlayerContext.getInstance().changeState(ShowEndedState.getInstance());
 		
 	}
-
 }
