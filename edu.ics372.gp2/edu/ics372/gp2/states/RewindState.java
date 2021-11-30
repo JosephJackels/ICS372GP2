@@ -5,12 +5,12 @@ import edu.ics372.gp2.timer.Notifiable;
 import edu.ics372.gp2.timer.Timer;
 
 /**
- * Represents the fast forward state.
+ * Represents the rewind state.
  * 
  * @author Austin Wang
  */
-public class FastForwardState extends VideoPlayerState implements Notifiable {
-	private static FastForwardState instance;
+public class RewindState extends VideoPlayerState implements Notifiable {
+	private static RewindState instance;
 	private Timer timer = null;
 	private Show show;
 	private int timeLeft;
@@ -18,18 +18,18 @@ public class FastForwardState extends VideoPlayerState implements Notifiable {
 	/**
 	 * private constructor for singleton pattern
 	 */
-	private FastForwardState() {
+	private RewindState() {
 
 	}
-
+	
 	/**
 	 * singleton object
 	 * 
 	 * @return object
 	 */
-	public static FastForwardState getInstance() {
+	public static RewindState getInstance() {
 		if (instance == null) {
-			instance = new FastForwardState();
+			instance = new RewindState();
 		}
 		return instance;
 	}
@@ -41,12 +41,13 @@ public class FastForwardState extends VideoPlayerState implements Notifiable {
 	public void offRequest() {
 		VideoPlayerContext.getInstance().changeState(OffState.getInstance());
 	}
-
+	
 	/**
 	 * Process play request
 	 */
 	@Override
 	public void playRequest() {
+		VideoPlayerContext.getInstance().setShow(show);
 		VideoPlayerContext.getInstance().changeState(PlayingState.getInstance());
 	}
 	
@@ -57,7 +58,24 @@ public class FastForwardState extends VideoPlayerState implements Notifiable {
 	public void stopRequest() {
 		VideoPlayerContext.getInstance().changeState(ShowEndedState.getInstance());
 	}
-	
+
+	@Override
+	public void OnTimerTick(int timerValue) {
+		timeLeft += 2;
+		show.setElapsedTime(show.getElapsedTime() - 2);
+		if (timeLeft > show.getShowLength()) {
+			timeLeft = show.getShowLength();
+		}
+		
+		VideoPlayerContext.getInstance().showTimeLeft(timeLeft);
+	}
+
+	@Override
+	public void onTimerRunsOut() {
+		show.setElapsedTime(0);
+		VideoPlayerContext.getInstance().changeState(SelectedState.getInstance());
+	}
+
 	@Override
 	public void leave() {
 		timer.stop();
@@ -65,42 +83,21 @@ public class FastForwardState extends VideoPlayerState implements Notifiable {
 		VideoPlayerContext.getInstance().setShow(show);
 		
 	}
-	
+
 	/**
 	 * Initialize the state
 	 */
 	@Override
 	public void enter() {
+	//	timeLeft = show.getShowLength() - show.getElapsedTime();
 		show = VideoPlayerContext.getInstance().getShow();
-		timeLeft = show.getShowLength() - show.getElapsedTime();
-		int time = (timeLeft % 2 == 0) ? (timeLeft / 2) : (timeLeft / 2) + 1;
+		int time = (show.getElapsedTime() % 2 == 0) ? (show.getElapsedTime() / 2) : (show.getElapsedTime() / 2) + 1;
 		timer = new Timer(this, time);
-		VideoPlayerContext.getInstance().showFastForward();
+		timeLeft = show.getShowLength() - show.getElapsedTime();
+		VideoPlayerContext.getInstance().showRewind();
 	}
 	
-	public Show getShow() {
-		return show;
-	}
-
 	public void setShow(Show show) {
 		this.show = show;
-	}
-
-	@Override
-	public void OnTimerTick(int timerValue) {
-		timeLeft -= 2;
-		show.setElapsedTime(show.getElapsedTime() + 2);
-		if (timeLeft < 0) {
-			timeLeft = 0;
-		}		
-		VideoPlayerContext.getInstance().showTimeLeft(timeLeft);
-		
-	}
-
-	@Override
-	public void onTimerRunsOut() {
-		VideoPlayerContext.getInstance().showTimeLeft(0);
-		VideoPlayerContext.getInstance().changeState(ShowEndedState.getInstance());
-		
 	}
 }

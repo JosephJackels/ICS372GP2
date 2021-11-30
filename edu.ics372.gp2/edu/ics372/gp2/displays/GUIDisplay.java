@@ -127,6 +127,14 @@ public class GUIDisplay extends Application implements VideoPlayerDisplay {
 	}
 	
 	/**
+	 * Indicate rewinding
+	 */
+	@Override
+	public void showRewind() {
+		videoPlayerStatus.setText("Video Status: Rewinding\n");
+	}
+	
+	/**
 	 * Indicate fast forwarding
 	 */
 	@Override
@@ -151,6 +159,7 @@ public class GUIDisplay extends Application implements VideoPlayerDisplay {
 	public void showSelected(String showName, String showLength) {
 		videoPlayerStatus.setText("Video Status: Show selected\n");
 		infoText.setText("Show: " + showName + "\nShow length: " + showLength + " seconds\n");
+		timerValue.setText("");
 //		playingStatus.setText("Not Started\n");
 	}
 

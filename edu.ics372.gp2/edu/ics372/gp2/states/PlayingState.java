@@ -50,7 +50,6 @@ public class PlayingState extends VideoPlayerState implements Notifiable {
 	public void pauseRequest() {
 		// save elapsed time somehow?
 		show.setElapsedTime(show.getShowLength() - timer.getTimeValue());
-		PausedState.getInstance().setShow(show);
 		VideoPlayerContext.getInstance().changeState(PausedState.getInstance());
 	}
 	
@@ -63,12 +62,20 @@ public class PlayingState extends VideoPlayerState implements Notifiable {
 	}
 	
 	/**
+	 * Process rewind
+	 */
+	@Override
+	public void rewindRequest() {
+		show.setElapsedTime(show.getShowLength() - timer.getTimeValue());
+		VideoPlayerContext.getInstance().changeState(RewindState.getInstance());
+	}
+	
+	/**
 	 * Process fast forwarding
 	 */
 	@Override
 	public void fastFowardRequest() {
 		show.setElapsedTime(show.getShowLength() - timer.getTimeValue());
-		FastForwardState.getInstance().setShow(show);
 		VideoPlayerContext.getInstance().changeState(FastForwardState.getInstance());
 	}
 	
@@ -83,16 +90,6 @@ public class PlayingState extends VideoPlayerState implements Notifiable {
 	}
 
 	/**
-	 * Process the video ending
-	 */
-	@Override
-	public void onVideoRunsOut() {
-		// TODO Auto-generated method stub
-		// show 0 time left
-		// change to idle state
-	}
-
-	/**
 	 * Process leaving playing state
 	 */
 	@Override
@@ -102,6 +99,7 @@ public class PlayingState extends VideoPlayerState implements Notifiable {
 		// change video player context to not playing
 		timer.stop();
 		timer = null;
+		VideoPlayerContext.getInstance().setShow(show);
 
 		// if show is finished or stop button is pressed reset show's elapsed time
 	}

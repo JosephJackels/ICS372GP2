@@ -99,6 +99,10 @@ public class VideoPlayerContext {
 		display.showPaused();
 	}
 	
+	public void showRewind() {
+		display.showRewind();
+	}
+	
 	public void showFastForward() {
 		display.showFastForward();
 	}
