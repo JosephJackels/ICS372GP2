@@ -8,7 +8,6 @@ public class SelectedState extends VideoPlayerState implements Notifiable {
 	private static SelectedState instance;
 	private Timer timer;
 
-
 	/**
 	 * Private constructor for singleton pattern.
 	 */
@@ -28,7 +27,7 @@ public class SelectedState extends VideoPlayerState implements Notifiable {
 
 		return instance;
 	}
-	
+
 	/**
 	 * process On request
 	 */
@@ -36,7 +35,7 @@ public class SelectedState extends VideoPlayerState implements Notifiable {
 	public void onRequest() {
 		timer.setTimeValue(10);
 	}
-	
+
 	/**
 	 * process off request
 	 */
@@ -49,7 +48,8 @@ public class SelectedState extends VideoPlayerState implements Notifiable {
 	 * process Select request
 	 */
 	@Override
-	public void selectRequest() {
+	public void selectRequest(Show show) {
+		VideoPlayerContext.getInstance().setShow(show);
 		timer.setTimeValue(10);
 		VideoPlayerContext.getInstance().showSelected();
 	}
@@ -61,7 +61,7 @@ public class SelectedState extends VideoPlayerState implements Notifiable {
 	public void playRequest() {
 		VideoPlayerContext.getInstance().changeState(PlayingState.getInstance());
 	}
-	
+
 	/**
 	 * process Pause request
 	 */
@@ -69,7 +69,7 @@ public class SelectedState extends VideoPlayerState implements Notifiable {
 	public void pauseRequest() {
 		timer.setTimeValue(10);
 	}
-	
+
 	/**
 	 * process Stop request
 	 */
@@ -77,7 +77,7 @@ public class SelectedState extends VideoPlayerState implements Notifiable {
 	public void stopRequest() {
 		timer.setTimeValue(10);
 	}
-	
+
 	/**
 	 * process Rewind request
 	 */
@@ -93,7 +93,7 @@ public class SelectedState extends VideoPlayerState implements Notifiable {
 	public void fastFowardRequest() {
 		timer.setTimeValue(10);
 	}
-	
+
 	/**
 	 * process timeout after no buttons pressed
 	 */

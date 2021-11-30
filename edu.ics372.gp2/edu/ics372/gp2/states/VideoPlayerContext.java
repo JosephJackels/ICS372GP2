@@ -78,7 +78,7 @@ public class VideoPlayerContext {
 	public void showStopped() {
 		display.showStopped();
 	}
-	
+
 	/**
 	 * Marked to be deleted if not needed.
 	 */
@@ -94,19 +94,19 @@ public class VideoPlayerContext {
 	public void showPlaying() {
 		display.showPlaying();
 	}
-	
+
 	public void showPaused() {
 		display.showPaused();
 	}
-	
+
 	public void showRewind() {
 		display.showRewind();
 	}
-	
+
 	public void showFastForward() {
 		display.showFastForward();
 	}
-	
+
 	public void showTimeLeft(int time) {
 		display.showTimeRemaining(time);
 	}
@@ -119,18 +119,18 @@ public class VideoPlayerContext {
 		currentState.onRequest();
 	}
 
-	public void selectRequest() {
-		currentState.selectRequest();
+	public void selectRequest(Show show) {
+		currentState.selectRequest(show);
 	}
 
 	public void playShowRequest() {
 		currentState.playRequest();
 	}
-	
+
 	public void pauseRequest() {
 		currentState.pauseRequest();
 	}
-	
+
 	public void stopRequest() {
 		currentState.stopRequest();
 	}

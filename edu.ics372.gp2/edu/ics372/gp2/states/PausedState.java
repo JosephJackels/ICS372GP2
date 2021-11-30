@@ -24,7 +24,7 @@ public class PausedState extends VideoPlayerState {
 	public void offRequest() {
 		VideoPlayerContext.getInstance().changeState(OffState.getInstance());
 	}
-	
+
 	/**
 	 * process Play request
 	 */
@@ -32,7 +32,7 @@ public class PausedState extends VideoPlayerState {
 	public void playRequest() {
 		VideoPlayerContext.getInstance().changeState(PlayingState.getInstance());
 	}
-	
+
 	/**
 	 * process Stop request
 	 */
@@ -40,13 +40,12 @@ public class PausedState extends VideoPlayerState {
 	public void stopRequest() {
 		VideoPlayerContext.getInstance().changeState(ShowEndedState.getInstance());
 	}
-	
-	
+
 	@Override
 	public void leave() {
-		VideoPlayerContext.getInstance().setShow(show);
+		// VideoPlayerContext.getInstance().setShow(show);
 	}
-	
+
 	/**
 	 * Initialize the state
 	 * 
@@ -65,7 +64,5 @@ public class PausedState extends VideoPlayerState {
 	public void setShow(Show show) {
 		this.show = show;
 	}
-	
-	
 
 }

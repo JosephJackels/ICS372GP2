@@ -14,7 +14,7 @@ public class FastForwardState extends VideoPlayerState implements Notifiable {
 	private Timer timer = null;
 	private Show show;
 	private int timeLeft;
-	
+
 	/**
 	 * private constructor for singleton pattern
 	 */
@@ -33,7 +33,7 @@ public class FastForwardState extends VideoPlayerState implements Notifiable {
 		}
 		return instance;
 	}
-	
+
 	/**
 	 * Process off request
 	 */
@@ -49,7 +49,7 @@ public class FastForwardState extends VideoPlayerState implements Notifiable {
 	public void playRequest() {
 		VideoPlayerContext.getInstance().changeState(PlayingState.getInstance());
 	}
-	
+
 	/**
 	 * Process stop request
 	 */
@@ -57,15 +57,15 @@ public class FastForwardState extends VideoPlayerState implements Notifiable {
 	public void stopRequest() {
 		VideoPlayerContext.getInstance().changeState(ShowEndedState.getInstance());
 	}
-	
+
 	@Override
 	public void leave() {
 		timer.stop();
 		timer = null;
-		VideoPlayerContext.getInstance().setShow(show);
-		
+		// VideoPlayerContext.getInstance().setShow(show);
+
 	}
-	
+
 	/**
 	 * Initialize the state
 	 */
@@ -77,7 +77,7 @@ public class FastForwardState extends VideoPlayerState implements Notifiable {
 		timer = new Timer(this, time);
 		VideoPlayerContext.getInstance().showFastForward();
 	}
-	
+
 	public Show getShow() {
 		return show;
 	}
@@ -92,15 +92,15 @@ public class FastForwardState extends VideoPlayerState implements Notifiable {
 		show.setElapsedTime(show.getElapsedTime() + 2);
 		if (timeLeft < 0) {
 			timeLeft = 0;
-		}		
+		}
 		VideoPlayerContext.getInstance().showTimeLeft(timeLeft);
-		
+
 	}
 
 	@Override
 	public void onTimerRunsOut() {
 		VideoPlayerContext.getInstance().showTimeLeft(0);
 		VideoPlayerContext.getInstance().changeState(ShowEndedState.getInstance());
-		
+
 	}
 }

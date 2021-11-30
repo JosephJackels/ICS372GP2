@@ -52,7 +52,7 @@ public class PlayingState extends VideoPlayerState implements Notifiable {
 		show.setElapsedTime(show.getShowLength() - timer.getTimeValue());
 		VideoPlayerContext.getInstance().changeState(PausedState.getInstance());
 	}
-	
+
 	/**
 	 * Process stop
 	 */
@@ -60,7 +60,7 @@ public class PlayingState extends VideoPlayerState implements Notifiable {
 	public void stopRequest() {
 		VideoPlayerContext.getInstance().changeState(ShowEndedState.getInstance());
 	}
-	
+
 	/**
 	 * Process rewind
 	 */
@@ -69,7 +69,7 @@ public class PlayingState extends VideoPlayerState implements Notifiable {
 		show.setElapsedTime(show.getShowLength() - timer.getTimeValue());
 		VideoPlayerContext.getInstance().changeState(RewindState.getInstance());
 	}
-	
+
 	/**
 	 * Process fast forwarding
 	 */
@@ -78,7 +78,7 @@ public class PlayingState extends VideoPlayerState implements Notifiable {
 		show.setElapsedTime(show.getShowLength() - timer.getTimeValue());
 		VideoPlayerContext.getInstance().changeState(FastForwardState.getInstance());
 	}
-	
+
 	/**
 	 * Process timer tick
 	 */
@@ -99,7 +99,7 @@ public class PlayingState extends VideoPlayerState implements Notifiable {
 		// change video player context to not playing
 		timer.stop();
 		timer = null;
-		VideoPlayerContext.getInstance().setShow(show);
+		// VideoPlayerContext.getInstance().setShow(show);
 
 		// if show is finished or stop button is pressed reset show's elapsed time
 	}

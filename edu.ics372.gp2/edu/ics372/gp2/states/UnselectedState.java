@@ -49,7 +49,8 @@ public class UnselectedState extends VideoPlayerState implements Notifiable {
 	 * @param show
 	 */
 	@Override
-	public void selectRequest() {
+	public void selectRequest(Show show) {
+		VideoPlayerContext.getInstance().setShow(show);
 		VideoPlayerContext.getInstance().changeState(SelectedState.getInstance());
 	}
 

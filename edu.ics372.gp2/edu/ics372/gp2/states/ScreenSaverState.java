@@ -32,15 +32,15 @@ public class ScreenSaverState extends VideoPlayerState {
 		}
 		return instance;
 	}
-	
+
 	public void setPreviousState(VideoPlayerState previousState) {
 		this.previousState = previousState;
 	}
-	
+
 	public void setShow(Show show) {
 		this.show = show;
 	}
-	
+
 	/**
 	 * process On request
 	 */
@@ -48,7 +48,7 @@ public class ScreenSaverState extends VideoPlayerState {
 	public void onRequest() {
 		VideoPlayerContext.getInstance().changeState(previousState);
 	}
-	
+
 	/**
 	 * process Off request
 	 */
@@ -56,15 +56,16 @@ public class ScreenSaverState extends VideoPlayerState {
 	public void offRequest() {
 		VideoPlayerContext.getInstance().changeState(OffState.getInstance());
 	}
-	
+
 	/**
 	 * Process selection request
 	 */
 	@Override
-	public void selectRequest() {
+	public void selectRequest(Show show) {
+		VideoPlayerContext.getInstance().setShow(show);
 		VideoPlayerContext.getInstance().changeState(previousState);
 	}
-	
+
 	/**
 	 * process Play request
 	 */
@@ -76,7 +77,7 @@ public class ScreenSaverState extends VideoPlayerState {
 			VideoPlayerContext.getInstance().changeState(PlayingState.getInstance());
 		}
 	}
-	
+
 	/**
 	 * Process pause request
 	 */
@@ -84,7 +85,7 @@ public class ScreenSaverState extends VideoPlayerState {
 	public void pauseRequest() {
 		VideoPlayerContext.getInstance().changeState(previousState);
 	}
-	
+
 	/**
 	 * Process stop request
 	 */
@@ -92,7 +93,7 @@ public class ScreenSaverState extends VideoPlayerState {
 	public void stopRequest() {
 		VideoPlayerContext.getInstance().changeState(previousState);
 	}
-	
+
 	/**
 	 * Process rewind request
 	 */
@@ -100,7 +101,7 @@ public class ScreenSaverState extends VideoPlayerState {
 	public void rewindRequest() {
 		VideoPlayerContext.getInstance().changeState(previousState);
 	}
-	
+
 	/**
 	 * Process fast forward request
 	 */
@@ -108,10 +109,10 @@ public class ScreenSaverState extends VideoPlayerState {
 	public void fastFowardRequest() {
 		VideoPlayerContext.getInstance().changeState(previousState);
 	}
-	
+
 	@Override
 	public void leave() {
-		VideoPlayerContext.getInstance().setShow(show);
+		// VideoPlayerContext.getInstance().setShow(show);
 	}
 
 	/**

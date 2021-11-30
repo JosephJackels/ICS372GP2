@@ -14,14 +14,14 @@ public class RewindState extends VideoPlayerState implements Notifiable {
 	private Timer timer = null;
 	private Show show;
 	private int timeLeft;
-	
+
 	/**
 	 * private constructor for singleton pattern
 	 */
 	private RewindState() {
 
 	}
-	
+
 	/**
 	 * singleton object
 	 * 
@@ -33,7 +33,7 @@ public class RewindState extends VideoPlayerState implements Notifiable {
 		}
 		return instance;
 	}
-	
+
 	/**
 	 * Process off request
 	 */
@@ -41,7 +41,7 @@ public class RewindState extends VideoPlayerState implements Notifiable {
 	public void offRequest() {
 		VideoPlayerContext.getInstance().changeState(OffState.getInstance());
 	}
-	
+
 	/**
 	 * Process play request
 	 */
@@ -50,7 +50,7 @@ public class RewindState extends VideoPlayerState implements Notifiable {
 		VideoPlayerContext.getInstance().setShow(show);
 		VideoPlayerContext.getInstance().changeState(PlayingState.getInstance());
 	}
-	
+
 	/**
 	 * Process stop request
 	 */
@@ -66,7 +66,7 @@ public class RewindState extends VideoPlayerState implements Notifiable {
 		if (timeLeft > show.getShowLength()) {
 			timeLeft = show.getShowLength();
 		}
-		
+
 		VideoPlayerContext.getInstance().showTimeLeft(timeLeft);
 	}
 
@@ -80,8 +80,8 @@ public class RewindState extends VideoPlayerState implements Notifiable {
 	public void leave() {
 		timer.stop();
 		timer = null;
-		VideoPlayerContext.getInstance().setShow(show);
-		
+		// VideoPlayerContext.getInstance().setShow(show);
+
 	}
 
 	/**
@@ -89,14 +89,14 @@ public class RewindState extends VideoPlayerState implements Notifiable {
 	 */
 	@Override
 	public void enter() {
-	//	timeLeft = show.getShowLength() - show.getElapsedTime();
+		// timeLeft = show.getShowLength() - show.getElapsedTime();
 		show = VideoPlayerContext.getInstance().getShow();
 		int time = (show.getElapsedTime() % 2 == 0) ? (show.getElapsedTime() / 2) : (show.getElapsedTime() / 2) + 1;
 		timer = new Timer(this, time);
 		timeLeft = show.getShowLength() - show.getElapsedTime();
 		VideoPlayerContext.getInstance().showRewind();
 	}
-	
+
 	public void setShow(Show show) {
 		this.show = show;
 	}
