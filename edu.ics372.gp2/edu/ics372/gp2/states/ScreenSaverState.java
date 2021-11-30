@@ -62,7 +62,6 @@ public class ScreenSaverState extends VideoPlayerState {
 	 */
 	@Override
 	public void selectRequest() {
-		VideoPlayerContext.getInstance().setShow(show);
 		VideoPlayerContext.getInstance().changeState(previousState);
 	}
 	
@@ -112,6 +111,7 @@ public class ScreenSaverState extends VideoPlayerState {
 	
 	@Override
 	public void leave() {
+		VideoPlayerContext.getInstance().setShow(show);
 	}
 
 	/**
@@ -120,6 +120,7 @@ public class ScreenSaverState extends VideoPlayerState {
 	 */
 	@Override
 	public void enter() {
+		this.show = VideoPlayerContext.getInstance().getShow();
 		VideoPlayerContext.getInstance().showScreenSaver();
 	}
 
