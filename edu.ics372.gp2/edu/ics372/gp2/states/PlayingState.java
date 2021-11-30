@@ -60,7 +60,6 @@ public class PlayingState extends VideoPlayerState implements Notifiable {
 	@Override
 	public void stopRequest() {
 		VideoPlayerContext.getInstance().changeState(ShowEndedState.getInstance());
-//		VideoPlayerContext.getInstance().showStopped(); <- this should be handled by showEndedState upon entering.
 	}
 	
 	/**
