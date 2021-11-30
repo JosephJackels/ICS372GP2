@@ -127,10 +127,4 @@ public class SelectedState extends VideoPlayerState implements Notifiable {
 	public void OnTimerTick(int timerValue) {
 		// TODO Auto-generated method stub
 	}
-
-	@Override
-	public void onVideoRunsOut() {
-		// TODO Auto-generated method stub
-	}
-
 }
