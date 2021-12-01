@@ -91,7 +91,6 @@ public class ShowEndedState extends VideoPlayerState implements Notifiable {
 	 */
 	@Override
 	public void OnTimerTick(int timerValue) {
-		VideoPlayerContext.getInstance().showTimeLeft(timerValue);
 	}
 
 	/**
