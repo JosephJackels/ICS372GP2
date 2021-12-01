@@ -43,7 +43,6 @@ public class GUIDisplay extends Application implements VideoPlayerDisplay {
 	private Text videoPlayerStatus = new Text("Video Status: Off\n");
 	private Text infoText = new Text("");
 	private Text timerValue = new Text(" ");
-//	private Text playingStatus = new Text("Not Started");
 	private Text showText = new Text("Shows");
 
 	@Override
@@ -56,10 +55,6 @@ public class GUIDisplay extends Application implements VideoPlayerDisplay {
 		fastForwardButton = new FastFowardButton("FF");
 		stopButton = new StopButton("STOP");
 
-//		//insert 2 shows as test subject
-//		ShowList.getInstance().insertShow(new Show("World War Z Trailer", 30));
-//		ShowList.getInstance().insertShow(new Show("The Grudge Trailer", 30));
-		// create a listView
 		ListView<Show> shows = new SelectControl();
 
 		HBox stage = new HBox();
@@ -73,7 +68,6 @@ public class GUIDisplay extends Application implements VideoPlayerDisplay {
 
 		statusDisplay.getChildren().addAll(videoPlayerStatus, infoText);
 		statusDisplay.getChildren().add(timerValue);
-//		statusDisplay.getChildren().add(showSelectingStatus);
 		buttonControls.getChildren().addAll(onButton, offButton, playButton, stopButton, pauseButton, fastForwardButton,
 				rewindButton);
 		displayContainer.getChildren().addAll(statusDisplay, showText, shows);
@@ -93,13 +87,11 @@ public class GUIDisplay extends Application implements VideoPlayerDisplay {
 		});
 	}
 
-	
 	@Override
 	public void showTimeRemaining(int time) {
-		// TODO Auto-generated method stub
 		timerValue.setText("Time Remaining: " + time + "\n");
 	}
-	
+
 	/**
 	 * Indicate the video player is off
 	 */
@@ -127,7 +119,7 @@ public class GUIDisplay extends Application implements VideoPlayerDisplay {
 		videoPlayerStatus.setText("Video Status: Playing\n");
 		infoText.setText("Show: " + show.getShowName() + "\nShow length: " + show.getShowLength() + " seconds\n");
 	}
-	
+
 	/**
 	 * Indicate rewinding
 	 */
@@ -135,7 +127,7 @@ public class GUIDisplay extends Application implements VideoPlayerDisplay {
 	public void showRewind() {
 		videoPlayerStatus.setText("Video Status: Rewinding\n");
 	}
-	
+
 	/**
 	 * Indicate fast forwarding
 	 */
@@ -162,7 +154,6 @@ public class GUIDisplay extends Application implements VideoPlayerDisplay {
 		videoPlayerStatus.setText("Video Status: Show selected\n");
 		infoText.setText("Show: " + showName + "\nShow length: " + showLength + " seconds\n");
 		timerValue.setText("");
-//		playingStatus.setText("Not Started\n");
 	}
 
 	/**
@@ -173,7 +164,6 @@ public class GUIDisplay extends Application implements VideoPlayerDisplay {
 		videoPlayerStatus.setText("Video Status: Show unselected");
 		infoText.setText("");
 		timerValue.setText("");
-//		playingStatus.setText("");
 	}
 
 	/*
@@ -193,8 +183,6 @@ public class GUIDisplay extends Application implements VideoPlayerDisplay {
 		videoPlayerStatus.setText("Video Status: Screen Saver");
 		infoText.setText("");
 		timerValue.setText("");
-//		playingStatus.setText("");
-
 	}
 
 }
