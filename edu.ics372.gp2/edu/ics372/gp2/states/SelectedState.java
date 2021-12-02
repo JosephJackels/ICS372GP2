@@ -4,6 +4,9 @@ import edu.ics372.gp2.entities.Show;
 import edu.ics372.gp2.timer.Notifiable;
 import edu.ics372.gp2.timer.Timer;
 
+/**
+ * Represents the video selected state
+ */
 public class SelectedState extends VideoPlayerState implements Notifiable {
 	private static SelectedState instance;
 	private Timer timer;
