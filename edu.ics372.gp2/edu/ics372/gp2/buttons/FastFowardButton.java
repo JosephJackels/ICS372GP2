@@ -4,8 +4,15 @@ import edu.ics372.gp2.states.VideoPlayerContext;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
+/**
+ * The button for fast forward request
+ */
 public class FastFowardButton extends GUIButton implements EventHandler<ActionEvent> {
-
+	/**
+	 * The button for fast forwarding
+	 * 
+	 * @param string
+	 */
 	public FastFowardButton(String string) {
 		super(string);
 	}
