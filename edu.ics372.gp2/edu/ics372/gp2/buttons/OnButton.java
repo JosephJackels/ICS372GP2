@@ -4,6 +4,9 @@ import edu.ics372.gp2.states.VideoPlayerContext;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
+/**
+ * The button for on request
+ */
 public class OnButton extends GUIButton implements EventHandler<ActionEvent> {
 
 	public OnButton(String string) {
