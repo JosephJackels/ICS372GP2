@@ -20,7 +20,6 @@ public class PlayButton extends GUIButton implements EventHandler<ActionEvent> {
 
 	@Override
 	public void handle(ActionEvent event) {
-		// TODO Process play, if show is selected
 		VideoPlayerContext.getInstance().playShowRequest();
 	}
 
