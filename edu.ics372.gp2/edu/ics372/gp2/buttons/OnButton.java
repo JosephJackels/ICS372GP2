@@ -9,6 +9,11 @@ import javafx.event.EventHandler;
  */
 public class OnButton extends GUIButton implements EventHandler<ActionEvent> {
 
+	/**
+	 * The button for turning the video player on
+	 * 
+	 * @param string
+	 */
 	public OnButton(String string) {
 		super(string);
 	}
