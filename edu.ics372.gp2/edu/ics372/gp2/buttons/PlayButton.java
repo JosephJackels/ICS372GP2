@@ -4,8 +4,16 @@ import edu.ics372.gp2.states.VideoPlayerContext;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
+/**
+ * The button for play request
+ */
 public class PlayButton extends GUIButton implements EventHandler<ActionEvent> {
 
+	/**
+	 * The button for playing
+	 * 
+	 * @param string
+	 */
 	public PlayButton(String string) {
 		super(string);
 	}
