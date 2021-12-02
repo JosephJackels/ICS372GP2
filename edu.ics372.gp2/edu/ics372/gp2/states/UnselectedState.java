@@ -4,6 +4,9 @@ import edu.ics372.gp2.entities.Show;
 import edu.ics372.gp2.timer.Notifiable;
 import edu.ics372.gp2.timer.Timer;
 
+/**
+ * Represents the video unselectd state
+ */
 public class UnselectedState extends VideoPlayerState implements Notifiable {
 	private static UnselectedState instance;
 	private Timer timer;
