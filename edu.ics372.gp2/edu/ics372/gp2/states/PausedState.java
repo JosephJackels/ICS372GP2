@@ -1,12 +1,21 @@
 package edu.ics372.gp2.states;
 
+/**
+ * Represents the video paused state
+ */
 public class PausedState extends VideoPlayerState {
 	private static PausedState instance;
 
+	/**
+	 * private constructor for paused state.
+	 */
 	private PausedState() {
 
 	}
-
+	
+	/**
+	 * method to access instance of paused state .
+	 */
 	public static PausedState getInstance() {
 		if (instance == null) {
 			instance = new PausedState();
@@ -38,6 +47,9 @@ public class PausedState extends VideoPlayerState {
 		VideoPlayerContext.getInstance().changeState(ShowEndedState.getInstance());
 	}
 
+	/**
+	 * exit the state.
+	 */
 	@Override
 	public void leave() {
 	}
