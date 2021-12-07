@@ -13,7 +13,6 @@ public class FastForwardState extends VideoPlayerState implements Notifiable {
 	private static FastForwardState instance;
 	private Timer timer = null;
 	private Show show;
-//	private int timeLeft;
 
 	/**
 	 * private constructor for singleton pattern

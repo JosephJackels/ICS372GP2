@@ -84,7 +84,6 @@ public class RewindState extends VideoPlayerState implements Notifiable {
 		show = VideoPlayerContext.getInstance().getShow();
 		int time = (show.getElapsedTime() % 2 == 0) ? (show.getElapsedTime() / 2) : (show.getElapsedTime() / 2) + 1;
 		timer = new Timer(this, time);
-//		timeLeft = show.getShowLength() - show.getElapsedTime();
 		VideoPlayerContext.getInstance().showRewind();
 	}
 }
