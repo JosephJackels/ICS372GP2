@@ -40,7 +40,6 @@ public class ShowEndedState extends VideoPlayerState implements Notifiable {
 		VideoPlayerContext.getInstance().getShow().setElapsedTime(0);
 		VideoPlayerContext.getInstance().showStopped(10);
 		timer = new Timer(this, 10);
-//		VideoPlayerContext.getInstance().showTimeLeft(10);
 	}
 
 	/**
