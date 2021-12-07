@@ -7,13 +7,21 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.ListView;
 
+/**
+ * This class represents the show object selected. Each show will get selected
+ * whenever it receives a mouse click after the video player is on. The selected
+ * show will get displayed on the main screen.
+ * 
+ * @author Dilli, Joseph, Austin, Andy, Leo
+ *
+ */
 public class SelectControl extends ListView<Show> {
 	public SelectControl() {
 		super(ShowList.getInstance().getShowsList());
 		setOnMouseClicked(new EventHandler<Event>() {
 			@Override
 			public void handle(Event arg0) {
-				Show show = (Show) getSelectionModel().getSelectedItem();
+				Show show = getSelectionModel().getSelectedItem();
 				VideoPlayerContext.getInstance().selectRequest(show);
 			}
 		});

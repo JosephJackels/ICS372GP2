@@ -6,17 +6,23 @@ import javafx.event.EventHandler;
 
 /**
  * The button for fast forward request
+ * 
+ * @author Dilli, Joseph, Austin, Andy, Leo
  */
 public class FastFowardButton extends GUIButton implements EventHandler<ActionEvent> {
 	/**
 	 * The button for fast forwarding
 	 * 
-	 * @param string
+	 * @param string the text for the button
 	 */
 	public FastFowardButton(String string) {
 		super(string);
 	}
-	
+
+	/**
+	 * This handles the click on the fast forward button.
+	 * 
+	 */
 	@Override
 	public void handle(ActionEvent event) {
 		VideoPlayerContext.getInstance().fastForwardRequest();

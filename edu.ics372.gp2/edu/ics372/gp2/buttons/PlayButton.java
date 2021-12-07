@@ -6,18 +6,23 @@ import javafx.event.EventHandler;
 
 /**
  * The button for play request
+ * 
+ * @author Dilli, Joseph, Austin, Andy, Leo
  */
 public class PlayButton extends GUIButton implements EventHandler<ActionEvent> {
 
 	/**
 	 * The button for playing
 	 * 
-	 * @param string
+	 * @param string the text on the play button
 	 */
 	public PlayButton(String string) {
 		super(string);
 	}
 
+	/**
+	 * This handles the click on the play button
+	 */
 	@Override
 	public void handle(ActionEvent event) {
 		VideoPlayerContext.getInstance().playShowRequest();

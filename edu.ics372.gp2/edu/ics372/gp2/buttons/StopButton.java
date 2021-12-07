@@ -6,18 +6,23 @@ import javafx.event.EventHandler;
 
 /**
  * The button for stop request
+ * 
+ * @author Dilli, Joseph, Austin, Andy, Leo
  */
 public class StopButton extends GUIButton implements EventHandler<ActionEvent> {
 
 	/**
 	 * The button for stopping
 	 * 
-	 * @param string
+	 * @param string the text on the stop button
 	 */
 	public StopButton(String string) {
 		super(string);
 	}
 
+	/**
+	 * This handles the click on stop button
+	 */
 	@Override
 	public void handle(ActionEvent event) {
 		VideoPlayerContext.getInstance().stopRequest();

@@ -6,6 +6,8 @@ import javafx.event.EventHandler;
 
 /**
  * The button for on request
+ * 
+ * @author Dilli, Joseph, Austin, Andy, Leo
  */
 public class OnButton extends GUIButton implements EventHandler<ActionEvent> {
 
@@ -18,6 +20,9 @@ public class OnButton extends GUIButton implements EventHandler<ActionEvent> {
 		super(string);
 	}
 
+	/**
+	 * This handles the click on the On button
+	 */
 	@Override
 	public void handle(ActionEvent event) {
 		VideoPlayerContext.getInstance().onRequest();
