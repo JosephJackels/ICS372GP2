@@ -1,59 +1,61 @@
 package edu.ics372.gp2.displays;
 
 /**
- * Specifies what the display system should do. Note that the implementation has
- * a lot of freedom to choose its display.
+ * Specifies what the display system should do.
+ * 
+ * @author Dilli
  */
 public interface VideoPlayerDisplay {
 
 	/**
+	 * Display the show time remaining
 	 * 
+	 * @param time remaining time
 	 */
 	public void showTimeRemaining(int time);
 
 	/**
-	 * 
+	 * Display show turn off
 	 */
 	public void showTurnOff();
 
 	/**
-	 * 
+	 * Display show paused
 	 */
 	public void showPaused();
 
 	/**
-	 * 
+	 * Display show playing
 	 */
 	public void showPlaying();
-	
+
 	/**
 	 * Display rewinding
 	 */
 	public void showRewind();
-	
+
 	/**
 	 * Display fast forwarding
 	 */
 	public void showFastForward();
-	
+
 	/**
-	 * 
+	 * Display show stopped
 	 */
 	public void showStopped();
 
 	/**
-	 * I gave this method a parameter just to check if selecting a show works. if
-	 * not needed we can delete the parameter.
+	 * Display show selected
 	 */
 	public void showSelected(String showName, String showLength);
 
 	/**
-	 * 
+	 * Display show unselected message
 	 */
 	public void showUnselected();
 
 	/**
-	 * 
+	 * Display no show is selected message
 	 */
 	public void showSelectingOff();
 
