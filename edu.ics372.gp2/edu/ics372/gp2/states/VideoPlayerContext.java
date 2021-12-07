@@ -73,8 +73,8 @@ public class VideoPlayerContext {
 		display.showUnselected();
 	}
 
-	public void showStopped() {
-		display.showStopped();
+	public void showStopped(int time) {
+		display.showStopped(time);
 	}
 
 	/**
@@ -105,8 +105,8 @@ public class VideoPlayerContext {
 		display.showFastForward();
 	}
 
-	public void showTimeLeft(int time) {
-		display.showTimeRemaining(time);
+	public void showTimeLeft(int elapsedTime, int showTime) {
+		display.showTimeRemaining(elapsedTime, showTime);
 	}
 
 	public void offRequest() {

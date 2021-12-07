@@ -88,8 +88,8 @@ public class GUIDisplay extends Application implements VideoPlayerDisplay {
 	}
 
 	@Override
-	public void showTimeRemaining(int time) {
-		timerValue.setText("Time Remaining: " + time + "\n");
+	public void showTimeRemaining(int elapsedTime, int showTime) {
+		timerValue.setText("Time: " + elapsedTime + " / " + showTime);
 	}
 
 	/**
@@ -140,10 +140,10 @@ public class GUIDisplay extends Application implements VideoPlayerDisplay {
 	 * Indicate show is ended (Should the name be changed to displayShowEnded?)
 	 */
 	@Override
-	public void showStopped() {
+	public void showStopped(int time) {
 		videoPlayerStatus.setText("Video Status: show ended\n");
 		infoText.setText("");
-		timerValue.setText("");
+		timerValue.setText("Time Remaining: " + time);
 	}
 
 	/**

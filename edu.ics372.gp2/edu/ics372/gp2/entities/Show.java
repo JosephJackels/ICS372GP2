@@ -36,6 +36,20 @@ public class Show {
 	public void setElapsedTime(int elapsedTime) {
 		this.elapsedTime = elapsedTime;
 	}
+	
+	public void increaseTime(int time) {
+		elapsedTime += time;
+		if (elapsedTime > showLength) {
+			elapsedTime = showLength;
+		}
+	}
+	
+	public void decreaseTime(int time) {
+		elapsedTime -= time;
+		if (elapsedTime < 0) {
+			elapsedTime = 0;
+		}
+	}
 
 	@Override
 	public String toString() {

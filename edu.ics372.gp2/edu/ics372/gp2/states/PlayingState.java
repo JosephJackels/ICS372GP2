@@ -46,7 +46,6 @@ public class PlayingState extends VideoPlayerState implements Notifiable {
 	 * Process pause
 	 */
 	public void pauseRequest() {
-		show.setElapsedTime(show.getShowLength() - timer.getTimeValue());
 		VideoPlayerContext.getInstance().changeState(PausedState.getInstance());
 	}
 
@@ -63,7 +62,6 @@ public class PlayingState extends VideoPlayerState implements Notifiable {
 	 */
 	@Override
 	public void rewindRequest() {
-		show.setElapsedTime(show.getShowLength() - timer.getTimeValue());
 		VideoPlayerContext.getInstance().changeState(RewindState.getInstance());
 	}
 
@@ -72,7 +70,6 @@ public class PlayingState extends VideoPlayerState implements Notifiable {
 	 */
 	@Override
 	public void fastFowardRequest() {
-		show.setElapsedTime(show.getShowLength() - timer.getTimeValue());
 		VideoPlayerContext.getInstance().changeState(FastForwardState.getInstance());
 	}
 
@@ -81,7 +78,8 @@ public class PlayingState extends VideoPlayerState implements Notifiable {
 	 */
 	@Override
 	public void OnTimerTick(int timerValue) {
-		VideoPlayerContext.getInstance().showTimeLeft(timerValue);
+		show.increaseTime(1);
+		VideoPlayerContext.getInstance().showTimeLeft(show.getElapsedTime(), show.getShowLength());
 	}
 
 	/**
@@ -105,7 +103,7 @@ public class PlayingState extends VideoPlayerState implements Notifiable {
 
 	@Override
 	public void onTimerRunsOut() {
-		VideoPlayerContext.getInstance().showTimeLeft(0);
+		VideoPlayerContext.getInstance().showTimeLeft(show.getElapsedTime(), show.getShowLength());
 		VideoPlayerContext.getInstance().changeState(ShowEndedState.getInstance());
 	}
 

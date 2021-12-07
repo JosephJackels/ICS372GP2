@@ -13,7 +13,6 @@ public class RewindState extends VideoPlayerState implements Notifiable {
 	private static RewindState instance;
 	private Timer timer = null;
 	private Show show;
-	private int timeLeft;
 
 	/**
 	 * private constructor for singleton pattern
@@ -61,13 +60,8 @@ public class RewindState extends VideoPlayerState implements Notifiable {
 
 	@Override
 	public void OnTimerTick(int timerValue) {
-		timeLeft += 2;
-		show.setElapsedTime(show.getElapsedTime() - 2);
-		if (timeLeft > show.getShowLength()) {
-			timeLeft = show.getShowLength();
-		}
-
-		VideoPlayerContext.getInstance().showTimeLeft(timeLeft);
+		show.decreaseTime(2);
+		VideoPlayerContext.getInstance().showTimeLeft(show.getElapsedTime(), show.getShowLength());
 	}
 
 	@Override
@@ -90,7 +84,7 @@ public class RewindState extends VideoPlayerState implements Notifiable {
 		show = VideoPlayerContext.getInstance().getShow();
 		int time = (show.getElapsedTime() % 2 == 0) ? (show.getElapsedTime() / 2) : (show.getElapsedTime() / 2) + 1;
 		timer = new Timer(this, time);
-		timeLeft = show.getShowLength() - show.getElapsedTime();
+//		timeLeft = show.getShowLength() - show.getElapsedTime();
 		VideoPlayerContext.getInstance().showRewind();
 	}
 }

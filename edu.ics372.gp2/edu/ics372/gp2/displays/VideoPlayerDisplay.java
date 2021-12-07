@@ -12,7 +12,7 @@ public interface VideoPlayerDisplay {
 	 * 
 	 * @param time remaining time
 	 */
-	public void showTimeRemaining(int time);
+	public void showTimeRemaining(int elapsedTime, int showTime);
 
 	/**
 	 * Display show turn off
@@ -42,7 +42,7 @@ public interface VideoPlayerDisplay {
 	/**
 	 * Display show stopped
 	 */
-	public void showStopped();
+	public void showStopped(int time);
 
 	/**
 	 * Display show selected

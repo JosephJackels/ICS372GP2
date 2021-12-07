@@ -38,9 +38,9 @@ public class ShowEndedState extends VideoPlayerState implements Notifiable {
 	@Override
 	public void enter() {
 		VideoPlayerContext.getInstance().getShow().setElapsedTime(0);
-		VideoPlayerContext.getInstance().showStopped();
+		VideoPlayerContext.getInstance().showStopped(10);
 		timer = new Timer(this, 10);
-		VideoPlayerContext.getInstance().showTimeLeft(10);
+//		VideoPlayerContext.getInstance().showTimeLeft(10);
 	}
 
 	/**
@@ -50,7 +50,7 @@ public class ShowEndedState extends VideoPlayerState implements Notifiable {
 	public void leave() {
 		timer.stop();
 		timer = null;
-		VideoPlayerContext.getInstance().showTimeLeft(0);
+		VideoPlayerContext.getInstance().getShow().setElapsedTime(0);;
 	}
 
 	/**
@@ -91,6 +91,7 @@ public class ShowEndedState extends VideoPlayerState implements Notifiable {
 	 */
 	@Override
 	public void OnTimerTick(int timerValue) {
+		VideoPlayerContext.getInstance().showStopped(timerValue);
 	}
 
 	/**
