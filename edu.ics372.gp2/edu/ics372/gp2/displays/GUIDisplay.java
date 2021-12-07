@@ -27,6 +27,8 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 /**
+ * GUI to implement VideoPlayerDisplay interface.
+ * 
  * @author Dilli
  *
  */
@@ -45,6 +47,9 @@ public class GUIDisplay extends Application implements VideoPlayerDisplay {
 	private Text timerValue = new Text(" ");
 	private Text showText = new Text("Shows");
 
+	/**
+	 * Sets up the interface
+	 */
 	@Override
 	public void start(Stage arg0) throws Exception {
 		offButton = new OffButton("OFF");
@@ -87,6 +92,9 @@ public class GUIDisplay extends Application implements VideoPlayerDisplay {
 		});
 	}
 
+	/**
+	 * Display the time left
+	 */
 	@Override
 	public void showTimeRemaining(int time) {
 		timerValue.setText("Time Remaining: " + time + "\n");
@@ -137,7 +145,7 @@ public class GUIDisplay extends Application implements VideoPlayerDisplay {
 	}
 
 	/**
-	 * Indicate show is ended (Should the name be changed to displayShowEnded?)
+	 * Indicate show is ended.
 	 */
 	@Override
 	public void showStopped() {
@@ -166,9 +174,10 @@ public class GUIDisplay extends Application implements VideoPlayerDisplay {
 		timerValue.setText("");
 	}
 
-	/*
-	 * Is this needed since selecting off is just the unselected state right?
+	/**
+	 * Indicate no show is selected
 	 */
+
 	@Override
 	public void showSelectingOff() {
 		videoPlayerStatus.setText("Off");
