@@ -13,7 +13,7 @@ public class FastForwardState extends VideoPlayerState implements Notifiable {
 	private static FastForwardState instance;
 	private Timer timer = null;
 	private Show show;
-	private int timeLeft;
+//	private int timeLeft;
 
 	/**
 	 * private constructor for singleton pattern
@@ -70,7 +70,7 @@ public class FastForwardState extends VideoPlayerState implements Notifiable {
 	@Override
 	public void enter() {
 		show = VideoPlayerContext.getInstance().getShow();
-		timeLeft = show.getShowLength() - show.getElapsedTime();
+		int timeLeft = show.getShowLength() - show.getElapsedTime();
 		int time = (timeLeft % 2 == 0) ? (timeLeft / 2) : (timeLeft / 2) + 1;
 		timer = new Timer(this, time);
 		VideoPlayerContext.getInstance().showFastForward();
@@ -78,18 +78,14 @@ public class FastForwardState extends VideoPlayerState implements Notifiable {
 
 	@Override
 	public void OnTimerTick(int timerValue) {
-		timeLeft -= 2;
-		show.setElapsedTime(show.getElapsedTime() + 2);
-		if (timeLeft < 0) {
-			timeLeft = 0;
-		}
-		VideoPlayerContext.getInstance().showTimeLeft(timeLeft);
+		show.increaseTime(2);
+		VideoPlayerContext.getInstance().showTimeLeft(show.getElapsedTime(), show.getShowLength());
 
 	}
 
 	@Override
 	public void onTimerRunsOut() {
-		VideoPlayerContext.getInstance().showTimeLeft(0);
+		VideoPlayerContext.getInstance().showTimeLeft(show.getElapsedTime(), show.getShowLength());
 		VideoPlayerContext.getInstance().changeState(ShowEndedState.getInstance());
 
 	}
